@@ -232,11 +232,11 @@ modules:
       - -DBUILD_DOCUMENTATION:BOOL=OFF
       - -DCMAKE_BUILD_TYPE:STRING=Release
     post-install:
-      - install -Dm644 avogadro/icons/avogadro2_64.png /app/share/icons/hicolor/64x64/apps/avogadro2.png
-      - install -Dm644 avogadro/icons/avogadro2_128.png /app/share/icons/hicolor/128x128/apps/avogadro2.png
-      - install -Dm644 avogadro/icons/avogadro2_256.png /app/share/icons/hicolor/256x256/apps/avogadro2.png
-      - install -Dm644 avogadro/icons/avogadro2_512.png /app/share/icons/hicolor/512x512/apps/avogadro2.png
-      - desktop-file-edit --set-key=Icon --set-value=avogadro2.png /app/share/applications/avogadro2.desktop
+      - install -Dm644 avogadro/icons/avogadro2_64.png /app/share/icons/hicolor/64x64/apps/$FLATPAK_ID.png
+      - install -Dm644 avogadro/icons/avogadro2_128.png /app/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
+      - install -Dm644 avogadro/icons/avogadro2_256.png /app/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
+      - install -Dm644 avogadro/icons/avogadro2_512.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
+      - desktop-file-edit --set-key=Icon --set-value=$FLATPAK_ID /app/share/applications/avogadro2.desktop
       - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
     sources:
       - type: git
