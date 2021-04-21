@@ -17,21 +17,21 @@ cleanup:
   - /share/doc
   - "*.la"
   - "*.a"
-  
+
 modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
-  
+
   - name: python3-numpy
     buildsystem: simple
     build-commands:
       - rm pyproject.toml
-      - pip3 install --prefix=/app .
+      - pip3 install --prefix=${FLATPAK_DEST} .
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/d2/48/f445be426ccd9b2fb64155ac6730c7212358882e589cd3717477d739d9ff/numpy-1.20.1.zip
         sha256: 3bc63486a870294683980d76ec1e3efc786295ae00128f9ea38e2c6e74d5a60a
-        
+
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
@@ -49,7 +49,7 @@ modules:
         sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
     cleanup:
       - "/share/hdf5_examples"
-  
+
   - name: libmsym
     buildsystem: cmake
     config-opts:
@@ -60,20 +60,20 @@ modules:
       - type: archive
         url: https://github.com/mcodev31/libmsym/archive/refs/tags/v0.2.3-paper.tar.gz
         sha256: 3741ebe163cf40696570d6b62e4834ca587d43dcac9de713994cc5e2960fb8fd
-      
+
   - name: pybind11    
     buildsystem: simple
     build-commands:
-      - python setup.py build
-      - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib -DCMAKE_INSTALL_DATAROOTDIR:PATH=/app/share .
-      - python setup.py install --prefix=${FLATPAK_DEST}
+      - python3 setup.py build
+      - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib -DCMAKE_INSTALL_DATAROOTDIR:PATH=${FLATPAK_DEST}/share .
+      - python3 setup.py install --prefix=${FLATPAK_DEST}
       - cmake --build .
       - cmake --install .
     sources:
       - type: archive
         url: https://github.com/pybind/pybind11/archive/v2.6.2.tar.gz
         sha256: 8ff2fff22df038f5cd02cea8af56622bc67f5b64534f1b83b9f133b8366acff2
-      
+
   - name: mmtf-cpp
     buildsystem: cmake
     config-opts:
@@ -84,7 +84,7 @@ modules:
       - type: archive
         url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.0.0.tar.gz
         sha256: 881f69c4bb56605fa63fd5ca50842facc4947f686cbf678ad04930674d714f40
-        
+
   - name: msgpack
     buildsystem: cmake
     config-opts:
@@ -124,22 +124,22 @@ modules:
       - type: archive
         url: https://github.com/zeromq/libzmq/releases/download/v4.3.3/zeromq-4.3.3.tar.gz
         sha256: 9d9285db37ae942ed0780c016da87060497877af45094ff9e1a1ca736e3875a2 
-        
+
   - name: spglib
     buildsystem: simple
     ensure-writable:
       - /lib/python3.8/site-packages/easy-install.pth
     build-commands:
-      - cmake -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app -DCMAKE_INSTALL_LIBDIR:PATH=/app .
+      - cmake -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST} -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST} .
       - cmake --build .
       - cmake --install .
-      - cd python && python setup.py build
-      - cd python && python setup.py install --skip-build --force --prefix=/app
+      - cd python && python3 setup.py build
+      - cd python && python3 setup.py install --skip-build --force --prefix=${FLATPAK_DEST}
     sources:
       - type: archive
         url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.1.tar.gz
         sha256: e90682239e4ef63b492fa4e44f7dbcde2e2fe2e688579d96b01f2730dfdf5b2e
-        
+
   - name: MoleQueue
     buildsystem: cmake
     builddir: true
@@ -150,7 +150,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/molequeue/releases/download/0.9.0/molequeue-0.9.0.tar.bz2
         sha256: 2825fa9645fca707796ad32967c307bec76dab4f6c305befeebeac8c7f7f2ef0
-        
+
   #- name: protobuf
     #buildsystem: cmake
     #subdir: cmake
@@ -158,13 +158,13 @@ modules:
       #- type: archive
         #url: https://github.com/protocolbuffers/protobuf/releases/download/v3.15.6/protobuf-cpp-3.15.6.tar.gz
         #sha256: bbdfb7455431d7d58666e8a2996d14b236718ff238eecde10646581e4c87f168
-        
+
   #- name: protocall-OpenChemistry 
     #buildsystem: cmake
     #sources:
       #- type: git
         #url: https://github.com/OpenChemistry/protocall
-        
+
   - name: VTK
     buildsystem: cmake
     builddir: true
@@ -196,7 +196,7 @@ modules:
       - type: archive
         url: https://www.vtk.org/files/release/9.0/VTK-9.0.1.tar.gz
         sha256: 1b39a5e191c282861e7af4101eaa8585969a2de05f5646c9199a161213a622c7
-        
+
   - name: avogadrolibs
     buildsystem: cmake
     config-opts:
@@ -213,8 +213,8 @@ modules:
       - -DUSE_VTK:BOOL=OFF
       - -DBUILD_GPL_PLUGINS:BOOL=ON
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
-      - -Dlibmsym_DIR:PATH=/app/lib/cmake/libmsym
-      - -Dpybind11_DIR:PATH=/app/lib/python3.8/site-packages/pybind11-2.6.2-py3.8.egg/pybind11/share/cmake/pybind11/
+      - -Dlibmsym_DIR:PATH=${FLATPAK_DEST}/lib/cmake/libmsym
+      - -Dpybind11_DIR:PATH=${FLATPAK_DEST}/lib/python3.8/site-packages/pybind11-2.6.2-py3.8.egg/pybind11/share/cmake/pybind11/
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs
@@ -223,7 +223,7 @@ modules:
         # Patch from upstream
       - type: patch
         path: fix_find_spglib.patch
-        
+
   - name: Avogadro2
     buildsystem: cmake
     config-opts:
@@ -232,12 +232,12 @@ modules:
       - -DBUILD_DOCUMENTATION:BOOL=OFF
       - -DCMAKE_BUILD_TYPE:STRING=Release
     post-install:
-      - install -Dm644 avogadro/icons/avogadro2_64.png /app/share/icons/hicolor/64x64/apps/$FLATPAK_ID.png
-      - install -Dm644 avogadro/icons/avogadro2_128.png /app/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
-      - install -Dm644 avogadro/icons/avogadro2_256.png /app/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
-      - install -Dm644 avogadro/icons/avogadro2_512.png /app/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
-      - desktop-file-edit --set-key=Icon --set-value=$FLATPAK_ID /app/share/applications/avogadro2.desktop
-      - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
+      - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/$FLATPAK_ID.png
+      - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
+      - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
+      - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
+      - desktop-file-edit --set-key=Icon --set-value=$FLATPAK_ID ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      - install -Dm644 $FLATPAK_ID.metainfo.xml ${FLATPAK_DEST}/share/metainfo/$FLATPAK_ID.metainfo.xml
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp
