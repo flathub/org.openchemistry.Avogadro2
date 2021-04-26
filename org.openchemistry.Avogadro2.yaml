@@ -3,17 +3,19 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
 command: avogadro2
-#rename-icon: avogadro2.png
 rename-desktop-file: avogadro2.desktop
+rename-desktop-file: molequeue.desktop
 finish-args:
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
   - --device=dri
   - --filesystem=home
-  # Molequeue enjoys its life in the menu tray.
+  # Molequeue enjoy its life in the menu tray.
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
+  # Allow Avogadro to communicate with Molequeue.
+  - --share=network
 cleanup:
   - /include
   - /lib/cmake
@@ -27,6 +29,8 @@ modules:
 
   - name: python3-numpy
     buildsystem: simple
+    ensure-writable:
+      - /lib/python3.8/site-packages/easy-install.pth
     build-commands:
       - rm pyproject.toml
       - pip3 install --prefix=${FLATPAK_DEST} .
@@ -46,12 +50,16 @@ modules:
       - "*"
 
   - name: hdf5
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
-        sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
-    cleanup:
-      - "/share/hdf5_examples"
+        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
+        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
 
   - name: libmsym
     buildsystem: cmake
@@ -125,7 +133,7 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://github.com/zeromq/libzmq/releases/download/v4.3.3/zeromq-4.3.3.tar.gz
+        url: https://github.com/zeromq/libzmq/releases/download/v4.3.4/zeromq-4.3.4.tar.gz
         sha256: 9d9285db37ae942ed0780c016da87060497877af45094ff9e1a1ca736e3875a2 
 
   - name: spglib
@@ -149,10 +157,15 @@ modules:
     config-opts:
       - -DENABLE_TESTING:BOOL=OFF
       - -DBUILD_DOCUMENTATION:BOOL=OFF
+    post-install:
+      - install -Dpm0644 molequeue/app/icons/molequeue.png /app/share/pixmaps/org.openchemistry.Molequeue.png
+      - install -Dpm0644 org.openchemistry.Molequeue.desktop ${FLATPAK_DEST}/share/applications/org.openchemistry.Molequeue.desktop
     sources:
       - type: archive
         url: https://github.com/OpenChemistry/molequeue/releases/download/0.9.0/molequeue-0.9.0.tar.bz2
         sha256: 2825fa9645fca707796ad32967c307bec76dab4f6c305befeebeac8c7f7f2ef0
+      - type: file
+        path: org.openchemistry.Molequeue.desktop
 
   #- name: protobuf
     #buildsystem: cmake
