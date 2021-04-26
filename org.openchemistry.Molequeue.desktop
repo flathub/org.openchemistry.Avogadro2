@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=MoleQueue
-GenericName=MoleQueue
-Comment=Manage HPC jobs from the system tray
-Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=molequeue --file-forwarding org.openchemistry.Avogadro2 @@ %f @@
-Terminal=false
-Type=Application
-Icon=org.openchemistry.Molequeue
-Categories=Science;Chemistry; 
