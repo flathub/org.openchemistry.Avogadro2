@@ -11,6 +11,9 @@ finish-args:
   - --socket=fallback-x11
   - --device=dri
   - --filesystem=home
+  # Molequeue enjoys its life in the menu tray.
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
 cleanup:
   - /include
   - /lib/cmake
