@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MoleQueue
+GenericName=MoleQueue
+Comment=Manage HPC jobs from the system tray
+Exec=molequeue %U
+Terminal=false
+Type=Application
+Icon=org.openchemistry.Avogadro2.Molequeue
+Categories=Science;Chemistry; 
