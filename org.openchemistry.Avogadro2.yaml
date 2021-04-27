@@ -4,7 +4,7 @@ sdk: org.kde.Sdk
 runtime-version: '5.15'
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
-rename-desktop-file: molequeue.desktop
+#rename-desktop-file: molequeue.desktop
 finish-args:
   - --share=ipc
   - --socket=wayland
