@@ -15,7 +15,7 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
   # Allow Avogadro to communicate with Molequeue.
-  - --share=network
+  #- --share=network
 cleanup:
   - /include
   - /lib/cmake
@@ -33,7 +33,7 @@ modules:
       - /lib/python3.8/site-packages/easy-install.pth
     build-commands:
       - python3 setup.py build
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
@@ -253,8 +253,6 @@ modules:
       - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
-      - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      - desktop-file-edit --set-key=Exec --set-value=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
