@@ -27,17 +27,17 @@ modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
 
-  - name: python3-numpy
-    buildsystem: simple
-    ensure-writable:
-      - /lib/python3.8/site-packages/easy-install.pth
-    build-commands:
-      - python3 setup.py build
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
-        sha256: c049f410c78e76ffb0af830a8afbdf8baac09897b4152b97b1a3b8345ee338ff
+  #- name: python3-numpy
+    #buildsystem: simple
+    #ensure-writable:
+      #- /lib/python3.8/site-packages/easy-install.pth
+    #build-commands:
+      #- python3 setup.py build
+      #- python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    #sources:
+      #- type: archive
+        #url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
+        #sha256: c049f410c78e76ffb0af830a8afbdf8baac09897b4152b97b1a3b8345ee338ff
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -249,10 +249,10 @@ modules:
       - -DBUILD_DOCUMENTATION:BOOL=OFF
       - -DCMAKE_BUILD_TYPE:STRING=Release
     post-install:
-      - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/64x64/${FLATPAK_ID}.png
-      - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/128x128/${FLATPAK_ID}.png
-      - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/256x256/${FLATPAK_ID}.png
-      - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/512x512/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/64x64/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/128x128/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/256x256/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/app-info/icons/flatpak/512x512/${FLATPAK_ID}.png
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
