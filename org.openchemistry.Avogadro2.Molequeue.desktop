@@ -7,4 +7,4 @@ Exec=molequeue %U
 Terminal=false
 Type=Application
 Icon=org.openchemistry.Avogadro2.Molequeue
-Categories=Science;Chemistry;
+Categories=Qt;Science;Chemistry;
