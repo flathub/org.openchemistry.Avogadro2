@@ -4,7 +4,6 @@ sdk: org.kde.Sdk
 runtime-version: '5.15'
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
-#rename-desktop-file: molequeue.desktop
 finish-args:
   - --share=ipc
   - --socket=wayland
@@ -149,19 +148,7 @@ modules:
         sha256: e90682239e4ef63b492fa4e44f7dbcde2e2fe2e688579d96b01f2730dfdf5b2e
 
   - name: MoleQueue
-    #buildsystem: cmake
-    #builddir: true
     buildsystem: simple
-    #config-opts:
-      #- -DENABLE_TESTING:BOOL=OFF
-      #- -DBUILD_DOCUMENTATION:BOOL=OFF
-    #post-install:
-      #- ls -l
-      #- ls -l molequeue
-      #- ls -l molequeue/app
-      #- ls -l molequeue/app/icons
-      #- install -Dm0644 molequeue/app/icons/molequeue.png /app/share/pixmaps/${FLATPAK_ID}.Molequeue.png
-      #- install -Dm0644 ${FLATPAK_ID}.Molequeue.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.Molequeue.desktop
     build-commands:
       - install -Dm0644 molequeue/app/icons/molequeue.png /app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.Molequeue.png
       - cmake -DENABLE_TESTING:BOOL=OFF -DBUILD_DOCUMENTATION:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=/app -Wno-dev .
