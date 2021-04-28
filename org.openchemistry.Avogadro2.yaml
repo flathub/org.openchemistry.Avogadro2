@@ -3,7 +3,6 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
 command: avogadro2
-#rename-icon: avogadro2.png
 rename-desktop-file: avogadro2.desktop
 finish-args:
   - --share=ipc
@@ -11,6 +10,11 @@ finish-args:
   - --socket=fallback-x11
   - --device=dri
   - --filesystem=home
+  # Molequeue enjoy its life in the menu tray.
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+  # Allow Avogadro to communicate with Molequeue.
+  #- --share=network
 cleanup:
   - /include
   - /lib/cmake
@@ -25,12 +29,11 @@ modules:
   - name: python3-numpy
     buildsystem: simple
     build-commands:
-      - rm pyproject.toml
-      - pip3 install --prefix=${FLATPAK_DEST} .
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/d2/48/f445be426ccd9b2fb64155ac6730c7212358882e589cd3717477d739d9ff/numpy-1.20.1.zip
-        sha256: 3bc63486a870294683980d76ec1e3efc786295ae00128f9ea38e2c6e74d5a60a
+        url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
+        sha256: c049f410c78e76ffb0af830a8afbdf8baac09897b4152b97b1a3b8345ee338ff
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -43,12 +46,16 @@ modules:
       - "*"
 
   - name: hdf5
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
-        sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
-    cleanup:
-      - "/share/hdf5_examples"
+        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
+        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
 
   - name: libmsym
     buildsystem: cmake
@@ -122,8 +129,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://github.com/zeromq/libzmq/releases/download/v4.3.3/zeromq-4.3.3.tar.gz
-        sha256: 9d9285db37ae942ed0780c016da87060497877af45094ff9e1a1ca736e3875a2 
+        url: https://github.com/zeromq/libzmq/releases/download/v4.3.4/zeromq-4.3.4.tar.gz
+        sha256: c593001a89f5a85dd2ddf564805deb860e02471171b3f204944857336295c3e5
 
   - name: spglib
     buildsystem: simple
@@ -141,15 +148,20 @@ modules:
         sha256: e90682239e4ef63b492fa4e44f7dbcde2e2fe2e688579d96b01f2730dfdf5b2e
 
   - name: MoleQueue
-    buildsystem: cmake
-    builddir: true
-    config-opts:
-      - -DENABLE_TESTING:BOOL=OFF
-      - -DBUILD_DOCUMENTATION:BOOL=OFF
+    buildsystem: simple
+    build-commands:
+      - install -Dm0644 molequeue/app/icons/molequeue.png /app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.Molequeue.png
+      - cmake -DENABLE_TESTING:BOOL=OFF -DBUILD_DOCUMENTATION:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=/app -Wno-dev .
+      - cmake --build .
+      - cmake --install .
+      - install -Dm0644 ${FLATPAK_ID}.Molequeue.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.Molequeue.desktop
+      - desktop-file-validate ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.Molequeue.desktop
     sources:
       - type: archive
         url: https://github.com/OpenChemistry/molequeue/releases/download/0.9.0/molequeue-0.9.0.tar.bz2
         sha256: 2825fa9645fca707796ad32967c307bec76dab4f6c305befeebeac8c7f7f2ef0
+      - type: file
+        path: org.openchemistry.Avogadro2.Molequeue.desktop
 
   #- name: protobuf
     #buildsystem: cmake
@@ -232,12 +244,14 @@ modules:
       - -DBUILD_DOCUMENTATION:BOOL=OFF
       - -DCMAKE_BUILD_TYPE:STRING=Release
     post-install:
-      - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/$FLATPAK_ID.png
-      - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
-      - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
-      - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/$FLATPAK_ID.png
-      - desktop-file-edit --set-key=Icon --set-value=$FLATPAK_ID ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      - install -Dm644 $FLATPAK_ID.metainfo.xml ${FLATPAK_DEST}/share/metainfo/$FLATPAK_ID.metainfo.xml
+      - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
+      - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      # Remove Education category fix Avogadro2 not appreating in menu entry, no clue why.
+      - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp
