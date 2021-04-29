@@ -20,8 +20,8 @@ finish-args:
   - --socket=session-bus 
   - --filesystem=host
   - --device=all
-  - --talk-name=molequeue.*
-  - --system-talk-name=molequeue.*
+  #- --talk-name=molequeue.*
+  #- --system-talk-name=molequeue.*
 cleanup:
   - /include
   - /lib/cmake
