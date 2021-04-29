@@ -15,18 +15,8 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
   # Allow Avogadro to communicate with Molequeue.
   - --share=network
-  #- --socket=pulseaudio
-  #- --socket=system-bus
-  #- --socket=session-bus 
-  #- --filesystem=host
-  #- --device=all
-  #- --talk-name=molequeue.*
-  #- --system-talk-name=molequeue.*
   - --talk-name=org.freedesktop.IBus
-  - --talk-name=org.freedesktop.DBus.Proprieties
-  #- --talk-name=org.gtk.vfs
-  #- --talk-name=org.gtk.vfs.*
-  #- --talk-name=org.freedesktop.Flatpak
+  #- --talk-name=org.freedesktop.DBus.Proprieties
 cleanup:
   - /include
   - /lib/cmake
