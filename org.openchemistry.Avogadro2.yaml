@@ -22,6 +22,11 @@ finish-args:
   - --device=all
   #- --talk-name=molequeue.*
   #- --system-talk-name=molequeue.*
+  - --talk-name=org.freedesktop.IBus
+  - --talk-name=org.freedesktop.DBus.Proprieties
+  - --talk-name=org.gtk.vfs
+  - --talk-name=org.gtk.vfs.*
+  - --talk-name=org.freedesktop.Flatpak
 cleanup:
   - /include
   - /lib/cmake
