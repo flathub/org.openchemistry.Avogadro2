@@ -6,8 +6,9 @@ command: avogadro2
 rename-desktop-file: avogadro2.desktop
 finish-args:
   - --share=ipc
-  - --socket=wayland
-  - --socket=fallback-x11
+  # Broke in Wayland
+  #- --socket=wayland
+  - --socket=x11
   - --device=dri
   - --filesystem=home
   # Molequeue enjoy its life in the menu tray.
