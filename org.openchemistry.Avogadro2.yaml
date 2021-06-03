@@ -237,12 +237,10 @@ modules:
         url: https://github.com/OpenChemistry/avogadrolibs
         tag: '1.94.0'
         commit: 51edf2b873a0a2b0dc85f6f18d67b59980cc8b0d
-      - type: git
-        url: https://github.com/OpenChemistry/molecules
-        tag: 'master'
-        commit: b1e16c5dc6d15e72d30dd6c4fca31b2c12025efc
+      - type: archive
+        url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
+        sha256: a1275e8139c2021127514abdccfb13e20b1cca0791d14459e9f50065ca566f02
         dest: molecules
-
 
   - name: Avogadro2
     buildsystem: cmake
