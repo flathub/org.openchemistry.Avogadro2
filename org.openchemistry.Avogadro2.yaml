@@ -59,16 +59,17 @@ modules:
       - "*"
 
   - name: hdf5
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING:BOOL=OFF
-      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+    cleanup:
+      - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
-        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_1.tar.gz
+        sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
+        x-checker-data:
+          type: anitya
+          project-id: 1303
+          stable-only: true
+          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-$version.tar.gz
 
   - name: libmsym
     buildsystem: cmake
