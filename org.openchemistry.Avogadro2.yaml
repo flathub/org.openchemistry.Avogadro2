@@ -235,7 +235,7 @@ modules:
         #url: https://github.com/protocolbuffers/protobuf/releases/download/v3.15.6/protobuf-cpp-3.15.6.tar.gz
         #sha256: bbdfb7455431d7d58666e8a2996d14b236718ff238eecde10646581e4c87f168
 
-  #- name: protocall-OpenChemistry 
+  #- name: protocall-OpenChemistry
     #buildsystem: cmake
     #sources:
       #- type: git
@@ -303,9 +303,8 @@ modules:
         commit: 51edf2b873a0a2b0dc85f6f18d67b59980cc8b0d
         dest: avogadrolibs
         x-checker-data:
-          type: anitya
-          project-id: 221504
-          tag-template: $version
+          type: git
+          tag-pattern: ^([\d.]+)$
       - type: archive
         url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
         sha256: a1275e8139c2021127514abdccfb13e20b1cca0791d14459e9f50065ca566f02
@@ -339,8 +338,7 @@ modules:
         tag: 1.94.0
         commit: 320fa12fc73025339afec8783dad1d6bb78204ad
         x-checker-data:
-          type: anitya
-          project-id: 221509
-          tag-template: $version
+          type: git
+          tag-pattern: ^([\d.]+)$
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
