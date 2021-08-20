@@ -31,26 +31,14 @@ modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
 
-  - name: Cython
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/6c/9f/f501ba9d178aeb1f5bf7da1ad5619b207c90ac235d9859961c11829d0160/Cython-0.29.21.tar.gz
-        sha256: e57acb89bd55943c8d8bf813763d20b9099cc7165c0f16b707631a7654be9cad
-        x-checker-data:
-          type: pypi
-          name: Cython
-
   - name: python3-numpy
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/3a/be/650f9c091ef71cb01d735775d554e068752d3ff63d7943b26316dc401749/numpy-1.21.2.zip
-        sha256: 423216d8afc5923b15df86037c6053bf030d15cc9e3224206ef868c2d63dd6dc
+        url: https://files.pythonhosted.org/packages/0b/a7/e724c8df240687b5fd62d8c71f1a6709d455c4c09432c7412e3e64f4cbe5/numpy-1.21.1.zip
+        sha256: dff4af63638afcc57a3dfb9e4b26d434a7a602d225b42d746ea7fe2edf1342fd
         x-checker-data:
           type: pypi
           name: numpy
@@ -60,8 +48,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
-        sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
+        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
+        sha256: b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
         x-checker-data:
           type: anitya
           project-id: 13751
@@ -117,8 +105,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.7.0.tar.gz
-        sha256: 6cd73b3d0bf3daf415b5f9b87ca8817cc2e2b64c275d65f9500250f9fee1677e
+        url: https://github.com/pybind/pybind11/archive/v2.7.1.tar.gz
+        sha256: 616d1c42e4cf14fa27b2a4ff759d7d7b33006fdc5ad8fd603bb2c22622f27020
         x-checker-data:
           type: anitya
           project-id: 13384
@@ -209,8 +197,8 @@ modules:
       - cd python && python3 setup.py install --skip-build --force --prefix=${FLATPAK_DEST}
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.1.tar.gz
-        sha256: e90682239e4ef63b492fa4e44f7dbcde2e2fe2e688579d96b01f2730dfdf5b2e
+        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.2.tar.gz
+        sha256: 5723789bee7371ebba91d78c729d2a608f198fad5e1c95eebe18fda9f2914ec8
         x-checker-data:
           type: anitya
           project-id: 14891
@@ -311,8 +299,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs
-        tag: 1.94.0
-        commit: 51edf2b873a0a2b0dc85f6f18d67b59980cc8b0d
+        tag: 1.95.0
+        commit: 17e82539c67a6f5dc98888acb3ef4f10f8d62e4b
         dest: avogadrolibs
         x-checker-data:
           type: git
@@ -329,6 +317,7 @@ modules:
         dest-filename: crystals.zip
 
   - name: Avogadro2
+    subdir: Avogadro2
     buildsystem: cmake
     config-opts:
       - -DENABLE_RPATH:BOOL=ON
@@ -343,14 +332,21 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
       # Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
       - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      - ls -l
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
-        url: https://github.com/OpenChemistry/avogadroapp
-        tag: 1.94.0
-        commit: 320fa12fc73025339afec8783dad1d6bb78204ad
+        url: git://github.com/OpenChemistry/avogadroapp.git
+        tag: 1.95.0
+        commit: 98a1e8b911bfd57d01c8ad8637325622dbd2dd4a
+        dest: Avogadro2
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
+      - type: archive
+        url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
+        dest: avogadro-i18n
+        sha256: b2bc8b505a5e01bc3b29e71852ffd8a8a319cc9bb360372f4a91217b73e1f5e5
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
+        dest: Avogadro2
