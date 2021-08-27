@@ -299,8 +299,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs
-        tag: 1.95.0
-        commit: 17e82539c67a6f5dc98888acb3ef4f10f8d62e4b
+        tag: 1.95.1
+        commit: 11044b0bd7844a5241529e7f9c45ff6ed5ab22bf
         dest: avogadrolibs
         x-checker-data:
           type: git
@@ -332,13 +332,12 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
       # Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
       - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      - ls -l
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
         url: git://github.com/OpenChemistry/avogadroapp.git
-        tag: 1.95.0
-        commit: 98a1e8b911bfd57d01c8ad8637325622dbd2dd4a
+        tag: 1.95.1
+        commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
         dest: Avogadro2
         x-checker-data:
           type: git
