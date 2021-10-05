@@ -37,8 +37,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/0b/a7/e724c8df240687b5fd62d8c71f1a6709d455c4c09432c7412e3e64f4cbe5/numpy-1.21.1.zip
-        sha256: dff4af63638afcc57a3dfb9e4b26d434a7a602d225b42d746ea7fe2edf1342fd
+        url: https://files.pythonhosted.org/packages/3a/be/650f9c091ef71cb01d735775d554e068752d3ff63d7943b26316dc401749/numpy-1.21.2.zip
+        sha256: 423216d8afc5923b15df86037c6053bf030d15cc9e3224206ef868c2d63dd6dc
         x-checker-data:
           type: pypi
           name: numpy
@@ -105,8 +105,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.7.1.tar.gz
-        sha256: 616d1c42e4cf14fa27b2a4ff759d7d7b33006fdc5ad8fd603bb2c22622f27020
+        url: https://github.com/pybind/pybind11/archive/v2.8.0.tar.gz
+        sha256: 9ca7770fc5453b10b00a4a2f99754d7a29af8952330be5f5602e7c2635fa3e79
         x-checker-data:
           type: anitya
           project-id: 13384
@@ -312,7 +312,7 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 090e6334192ebe3e39463f903614c13fa665cb9c24c6f2f1307c69710225b83e
+        sha256: f1475cf8d04d977420cae5dc4762cb064bbb87a10ae0f09f5eee325c9ea2fc72
         dest: crystals
         dest-filename: crystals.zip
 
@@ -345,7 +345,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: afed4f3b8d09f977b023e68596edcf8958fc6dae32bc661cee72380a31a61d6a
+        sha256: 99120f87a7ce951b9a13c76018a0a61bc19bf8e6ff09a7da5b50cd5f562b9b95
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
