@@ -37,8 +37,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/3a/be/650f9c091ef71cb01d735775d554e068752d3ff63d7943b26316dc401749/numpy-1.21.2.zip
-        sha256: 423216d8afc5923b15df86037c6053bf030d15cc9e3224206ef868c2d63dd6dc
+        url: https://files.pythonhosted.org/packages/5f/d6/ad58ded26556eaeaa8c971e08b6466f17c4ac4d786cd3d800e26ce59cc01/numpy-1.21.3.zip
+        sha256: 63571bb7897a584ca3249c86dd01c10bcb5fe4296e3568b2e9c1a55356b6410e
         x-checker-data:
           type: pypi
           name: numpy
@@ -105,8 +105,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.8.0.tar.gz
-        sha256: 9ca7770fc5453b10b00a4a2f99754d7a29af8952330be5f5602e7c2635fa3e79
+        url: https://github.com/pybind/pybind11/archive/v2.8.1.tar.gz
+        sha256: f1bcc07caa568eb312411dde5308b1e250bd0e1bc020fae855bf9f43209940cc
         x-checker-data:
           type: anitya
           project-id: 13384
