@@ -197,8 +197,8 @@ modules:
       - cd python && python3 setup.py install --skip-build --force --prefix=${FLATPAK_DEST}
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.2.tar.gz
-        sha256: 5723789bee7371ebba91d78c729d2a608f198fad5e1c95eebe18fda9f2914ec8
+        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.3.tar.gz
+        sha256: 1dfe313b460f71de90ee8a01d9f2cd250cd59e16836e1bf64924500dd2aa7dc6
         x-checker-data:
           type: anitya
           project-id: 14891
