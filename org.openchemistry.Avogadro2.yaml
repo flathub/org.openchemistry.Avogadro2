@@ -4,6 +4,9 @@ sdk: org.kde.Sdk
 runtime-version: 5.15-21.08
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
+build-options:
+  cflags: -O2 -g -flto
+  cxxflags: -O2 -g -flto
 finish-args:
   - --share=ipc
   # Broke in Wayland
@@ -47,8 +50,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -65,8 +68,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -ffat-lto-objects
-      cxxflags: -O2 -g -flto -ffat-lto-objects
+      cflags: -ffat-lto-objects
+      cxxflags: -ffat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
@@ -86,8 +89,8 @@ modules:
   - name: libmsym
     buildsystem: cmake
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DMSYM_BUILD_PYTHON:BOOL=ON
@@ -105,8 +108,8 @@ modules:
   - name: pybind11
     buildsystem: simple
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     build-commands:
       - python3 setup.py build
       - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
@@ -128,8 +131,8 @@ modules:
   - name: mmtf-cpp
     buildsystem: cmake
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DBUILD_TESTS:BOOL=OFF
       - -Dmmtf_build_local:BOOL=ON
@@ -147,8 +150,8 @@ modules:
   - name: msgpack
     buildsystem: cmake
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DBUILD_SHARED_LIBS:BOOL=ON
@@ -170,8 +173,8 @@ modules:
     buildsystem: cmake
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DENABLE_TESTS:BOOL=OFF
       - -DBUILD_GUI:BOOL=OFF
@@ -194,8 +197,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
@@ -232,8 +235,8 @@ modules:
   - name: MoleQueue
     buildsystem: simple
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     build-commands:
       - install -Dm0644 molequeue/app/icons/molequeue.png /app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.Molequeue.png
       - cmake -DENABLE_TESTING:BOOL=OFF -DBUILD_DOCUMENTATION:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=/app
@@ -308,8 +311,8 @@ modules:
     builddir: true
     subdir: avogadrolibs
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DENABLE_TRANSLATIONS:BOOL=ON
