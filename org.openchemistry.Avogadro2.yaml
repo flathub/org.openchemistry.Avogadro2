@@ -4,9 +4,6 @@ sdk: org.kde.Sdk
 runtime-version: 5.15-21.08
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
-build-options:
-  cflags: -O2 -g -flto -fno-fat-lto-objects
-  cxxflags: -O2 -g -flto -fno-fat-lto-objects
 finish-args:
   - --share=ipc
   # Broke in Wayland
@@ -49,6 +46,9 @@ modules:
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -64,6 +64,9 @@ modules:
   - name: hdf5
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
@@ -82,6 +85,9 @@ modules:
 
   - name: libmsym
     buildsystem: cmake
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DMSYM_BUILD_PYTHON:BOOL=ON
@@ -98,6 +104,9 @@ modules:
 
   - name: pybind11
     buildsystem: simple
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     build-commands:
       - python3 setup.py build
       - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
@@ -118,6 +127,9 @@ modules:
 
   - name: mmtf-cpp
     buildsystem: cmake
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DBUILD_TESTS:BOOL=OFF
       - -Dmmtf_build_local:BOOL=ON
@@ -134,6 +146,9 @@ modules:
 
   - name: msgpack
     buildsystem: cmake
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DBUILD_SHARED_LIBS:BOOL=ON
@@ -154,6 +169,9 @@ modules:
   - name: OpenBabel
     buildsystem: cmake
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DENABLE_TESTS:BOOL=OFF
       - -DBUILD_GUI:BOOL=OFF
@@ -175,6 +193,9 @@ modules:
   - name: zeromq
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
@@ -210,6 +231,9 @@ modules:
 
   - name: MoleQueue
     buildsystem: simple
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     build-commands:
       - install -Dm0644 molequeue/app/icons/molequeue.png /app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.Molequeue.png
       - cmake -DENABLE_TESTING:BOOL=OFF -DBUILD_DOCUMENTATION:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=/app
@@ -283,6 +307,9 @@ modules:
     buildsystem: cmake
     builddir: true
     subdir: avogadrolibs
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DENABLE_TRANSLATIONS:BOOL=ON
@@ -319,36 +346,36 @@ modules:
         dest: crystals
         dest-filename: crystals.zip
 
-  #- name: Avogadro2
-    #subdir: Avogadro2
-    #buildsystem: cmake
-    #config-opts:
-      #- -DENABLE_RPATH:BOOL=ON
-      #- -DENABLE_TESTING:BOOL=OFF
-      #- -DBUILD_DOCUMENTATION:BOOL=OFF
-      #- -DCMAKE_BUILD_TYPE:STRING=Release
-    #post-install:
-      #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
-      #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
-      #- install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-      #- install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
-      #- desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      ## Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
-      #- desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      #- install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
-    #sources:
-      #- type: git
-        #url: https://github.com/OpenChemistry/avogadroapp.git
-        #tag: 1.95.1
-        #commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
-        #dest: Avogadro2
-        #x-checker-data:
-          #type: git
-          #tag-pattern: ^([\d.]+)$
-      #- type: archive
-        #url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
-        #dest: avogadro-i18n
-        #sha256: 99120f87a7ce951b9a13c76018a0a61bc19bf8e6ff09a7da5b50cd5f562b9b95
-      #- type: file
-        #path: org.openchemistry.Avogadro2.metainfo.xml
-        #dest: Avogadro2
+  - name: Avogadro2
+    subdir: Avogadro2
+    buildsystem: cmake
+    config-opts:
+      - -DENABLE_RPATH:BOOL=ON
+      - -DENABLE_TESTING:BOOL=OFF
+      - -DBUILD_DOCUMENTATION:BOOL=OFF
+      - -DCMAKE_BUILD_TYPE:STRING=Release
+    post-install:
+      - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
+      - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      # Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
+      - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+    sources:
+      - type: git
+        url: https://github.com/OpenChemistry/avogadroapp.git
+        tag: 1.95.1
+        commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
+        dest: Avogadro2
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+      - type: archive
+        url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
+        dest: avogadro-i18n
+        sha256: 99120f87a7ce951b9a13c76018a0a61bc19bf8e6ff09a7da5b50cd5f562b9b95
+      - type: file
+        path: org.openchemistry.Avogadro2.metainfo.xml
+        dest: Avogadro2
