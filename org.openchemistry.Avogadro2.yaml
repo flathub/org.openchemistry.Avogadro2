@@ -301,7 +301,7 @@ modules:
       - -Dpybind11_DIR:PATH=${FLATPAK_DEST}/lib/python3.8/site-packages/pybind11-2.6.2-py3.8.egg/pybind11/share/cmake/pybind11/
     sources:
       - type: git
-        url: https://github.com/OpenChemistry/avogadrolibs
+        url: https://github.com/OpenChemistry/avogadrolibs.git
         tag: 1.95.1
         commit: 11044b0bd7844a5241529e7f9c45ff6ed5ab22bf
         dest: avogadrolibs
@@ -319,36 +319,36 @@ modules:
         dest: crystals
         dest-filename: crystals.zip
 
-  - name: Avogadro2
-    subdir: Avogadro2
-    buildsystem: cmake
-    config-opts:
-      - -DENABLE_RPATH:BOOL=ON
-      - -DENABLE_TESTING:BOOL=OFF
-      - -DBUILD_DOCUMENTATION:BOOL=OFF
-      - -DCMAKE_BUILD_TYPE:STRING=Release
-    post-install:
-      - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
-      - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
-      - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-      - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
-      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      # Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
-      - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
-    sources:
-      - type: git
-        url: https://github.com/OpenChemistry/avogadroapp.git
-        tag: 1.95.1
-        commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
-        dest: Avogadro2
-        x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+)$
-      - type: archive
-        url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
-        dest: avogadro-i18n
-        sha256: 99120f87a7ce951b9a13c76018a0a61bc19bf8e6ff09a7da5b50cd5f562b9b95
-      - type: file
-        path: org.openchemistry.Avogadro2.metainfo.xml
-        dest: Avogadro2
+  #- name: Avogadro2
+    #subdir: Avogadro2
+    #buildsystem: cmake
+    #config-opts:
+      #- -DENABLE_RPATH:BOOL=ON
+      #- -DENABLE_TESTING:BOOL=OFF
+      #- -DBUILD_DOCUMENTATION:BOOL=OFF
+      #- -DCMAKE_BUILD_TYPE:STRING=Release
+    #post-install:
+      #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      #- desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      ## Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
+      #- desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      #- install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+    #sources:
+      #- type: git
+        #url: https://github.com/OpenChemistry/avogadroapp.git
+        #tag: 1.95.1
+        #commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
+        #dest: Avogadro2
+        #x-checker-data:
+          #type: git
+          #tag-pattern: ^([\d.]+)$
+      #- type: archive
+        #url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
+        #dest: avogadro-i18n
+        #sha256: 99120f87a7ce951b9a13c76018a0a61bc19bf8e6ff09a7da5b50cd5f562b9b95
+      #- type: file
+        #path: org.openchemistry.Avogadro2.metainfo.xml
+        #dest: Avogadro2
