@@ -65,8 +65,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -O2 -g -flto -ffat-lto-objects
+      cxxflags: -O2 -g -flto -ffat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
