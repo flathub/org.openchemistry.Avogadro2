@@ -197,8 +197,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -fno-fat-lto-objects
-      cxxflags: -fno-fat-lto-objects
+      cflags: -ffat-lto-objects
+      cxxflags: -ffat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
