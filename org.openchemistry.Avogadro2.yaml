@@ -162,7 +162,7 @@ modules:
           type: anitya
           project-id: 2539
           stable-only: true
-          url-template: https://github.com/openbabel/openbabel/releases/download/openbabel-${major}-%{minor}-%{patch}/openbabel-${version}-source.tar.bz2
+          url-template: https://github.com/openbabel/openbabel/releases/download/openbabel-${major}-${minor}-${patch}/openbabel-${version}-source.tar.bz2
 
   - name: zeromq
     buildsystem: cmake-ninja
