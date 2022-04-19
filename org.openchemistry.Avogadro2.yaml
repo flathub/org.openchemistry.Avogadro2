@@ -1,7 +1,7 @@
 app-id: org.openchemistry.Avogadro2
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: '5.15'
+runtime-version: '5.15-21.08'
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
 finish-args:
@@ -335,7 +335,7 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
-        url: git://github.com/OpenChemistry/avogadroapp.git
+        url: https://github.com/OpenChemistry/avogadroapp.git
         tag: 1.95.1
         commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
         dest: Avogadro2
