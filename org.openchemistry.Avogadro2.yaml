@@ -140,13 +140,13 @@ modules:
       - -DMSGPACK_CXX11:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/c-4.0.0/msgpack-c-4.0.0.tar.gz
-        sha256: 420fe35e7572f2a168d17e660ef981a589c9cbe77faa25eb34a520e1fcc032c8
+        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
+        sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
         x-checker-data:
           type: anitya
-          project-id: 235285
+          project-id: 12278
           stable-only: true
-          url-template: https://github.com/msgpack/msgpack-c/releases/download/c-${version}/msgpack-c-${version}.tar.gz
+          url-template: https://github.com/msgpack/msgpack-c/releases/download/cpp-$version/msgpack-$version.tar.gz
 
   - name: OpenBabel
     buildsystem: cmake
