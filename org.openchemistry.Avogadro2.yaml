@@ -1,7 +1,7 @@
 app-id: org.openchemistry.Avogadro2
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: 5.15-21.08
+runtime-version: '5.15-21.08'
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
 finish-args:
@@ -152,8 +152,13 @@ modules:
     buildsystem: cmake
     builddir: true
     config-opts:
-      - -DBUILD_GUI=FALSE
-      - -DENABLE_TESTS=OFF
+      - -DENABLE_TESTS:BOOL=OFF
+      - -DBUILD_GUI:BOOL=OFF
+      - -DOPTIMIZE_NATIVE:BOOL=OFF
+      - -DOB_USE_PREBUILT_BINARIES:BOOL=OFF
+      - -DENABLE_VERSIONED_FORMATS:BOOL=OFF
+      - -DWITH_JSON:BOOL=OFF
+      - -DWITH_MAEPARSER:BOOL=OFF
     sources:
       - type: archive
         url: https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-3.1.1-source.tar.bz2
@@ -162,7 +167,7 @@ modules:
           type: anitya
           project-id: 2539
           stable-only: true
-          url-template: https://github.com/openbabel/openbabel/releases/download/openbabel-${major}-${minor}-${patch}/openbabel-${version}-source.tar.bz2
+          url-template: https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-$version-source.tar.bz2
 
   - name: zeromq
     buildsystem: cmake-ninja
@@ -293,7 +298,7 @@ modules:
       - -Dpybind11_DIR:PATH=${FLATPAK_DEST}/lib/python3.8/site-packages/pybind11-2.6.2-py3.8.egg/pybind11/share/cmake/pybind11/
     sources:
       - type: git
-        url: https://github.com/OpenChemistry/avogadrolibs.git
+        url: https://github.com/OpenChemistry/avogadrolibs
         tag: 1.95.1
         commit: 11044b0bd7844a5241529e7f9c45ff6ed5ab22bf
         dest: avogadrolibs
@@ -314,9 +319,6 @@ modules:
   - name: Avogadro2
     subdir: Avogadro2
     buildsystem: cmake
-    build-options:
-      cflags: -flto -fno-fat-lto-objects
-      cxxflags: flto -fno-fat-lto-objects
     config-opts:
       - -DENABLE_RPATH:BOOL=ON
       - -DENABLE_TESTING:BOOL=OFF
