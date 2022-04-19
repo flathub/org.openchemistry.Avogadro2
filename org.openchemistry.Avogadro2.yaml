@@ -275,9 +275,6 @@ modules:
     buildsystem: cmake
     builddir: true
     subdir: avogadrolibs
-    build-options:
-      cflags: -flto -fno-fat-lto-objects
-      cxxflags: -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DENABLE_TRANSLATIONS:BOOL=ON
