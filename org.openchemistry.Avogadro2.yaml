@@ -1,7 +1,7 @@
 app-id: org.openchemistry.Avogadro2
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: '5.15-21.08'
+runtime-version: 5.15-21.08
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
 finish-args:
@@ -197,8 +197,8 @@ modules:
       - cd python && python3 setup.py install --skip-build --force --prefix=${FLATPAK_DEST}
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.3.tar.gz
-        sha256: 1dfe313b460f71de90ee8a01d9f2cd250cd59e16836e1bf64924500dd2aa7dc6
+        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.4.tar.gz
+        sha256: 7a1cdfdb104040e696e887999fd53d83931ba1285aa8fc3c703dcafc38fb1009
         x-checker-data:
           type: anitya
           project-id: 14891
