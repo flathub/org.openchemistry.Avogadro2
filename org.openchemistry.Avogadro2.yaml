@@ -1,7 +1,7 @@
 app-id: org.openchemistry.Avogadro2
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: '5.15-21.08'
+runtime-version: 5.15-21.08
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
 finish-args:
@@ -34,11 +34,12 @@ modules:
   - name: python3-numpy
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/64/4a/b008d1f8a7b9f5206ecf70a53f84e654707e7616a771d84c05151a4713e9/numpy-1.22.3.zip
-        sha256: dbc7601a3b7472d559dc7b933b18b4b66f9aa7452c120e87dfb33d02008c8a18
+        url: https://github.com/numpy/numpy/releases/download/v1.22.3/numpy-1.22.3.tar.gz
+        sha256: a906c0b4301a3d62ccf66d058fe779a65c1c34f6719ef2058f96e1856f48bca5
         x-checker-data:
           type: pypi
           name: numpy
@@ -187,18 +188,17 @@ modules:
   - name: spglib
     buildsystem: simple
     ensure-writable:
-      - /lib/python3.8/site-packages/easy-install.pth
+      - /lib/python3/site-packages/easy-install.pth
     build-commands:
-      - cmake -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib
+      - cmake -DCMAKE_INSTALL_PREFIX=${FLATPAK_DEST} -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib
         .
       - cmake --build .
       - cmake --install .
-      - cd python && python3 setup.py build
-      - cd python && python3 setup.py install --skip-build --force --prefix=${FLATPAK_DEST}
+      - cd python && python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.3.tar.gz
-        sha256: 1dfe313b460f71de90ee8a01d9f2cd250cd59e16836e1bf64924500dd2aa7dc6
+        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.5.tar.gz
+        sha256: 1bbde03b6b78da756c07f458bd90d84f3c253841b9b0632db5b72c5961e87aef
         x-checker-data:
           type: anitya
           project-id: 14891
@@ -299,8 +299,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs
-        tag: 1.95.1
-        commit: 11044b0bd7844a5241529e7f9c45ff6ed5ab22bf
+        tag: 1.96.0
+        commit: 53b1f66e5a1b5f45ec9e016576cb97bfbd5e4dd1
         dest: avogadrolibs
         x-checker-data:
           type: git
@@ -334,14 +334,15 @@ modules:
       - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
-      - type: git
-        url: https://github.com/OpenChemistry/avogadroapp.git
-        tag: 1.95.1
-        commit: b7dc60030cfae313f74edd1c2ea4f142630fe631
+      - type: archive
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.96.0.tar.gz
+        sha256: dc5317804747a1a97f8e7534fb1663a2a6dc808799a06322a3ceb959ef3dcdff
         dest: Avogadro2
         x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+)$
+          type: anitya
+          project-id:
+          stable-only: true
+          url-template: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/$version.tar.gz
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
