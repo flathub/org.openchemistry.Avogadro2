@@ -38,8 +38,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/numpy/numpy/releases/download/v1.22.3/numpy-1.22.3.tar.gz
-        sha256: a906c0b4301a3d62ccf66d058fe779a65c1c34f6719ef2058f96e1856f48bca5
+        url: https://files.pythonhosted.org/packages/f6/d8/ab692a75f584d13c6542c3994f75def5bce52ded9399f52e230fe402819d/numpy-1.22.4.zip
+        sha256: 425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af
         x-checker-data:
           type: pypi
           name: numpy
@@ -190,11 +190,12 @@ modules:
     ensure-writable:
       - /lib/python3/site-packages/easy-install.pth
     build-commands:
-      - cmake -DCMAKE_INSTALL_PREFIX=${FLATPAK_DEST} -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib
-        .
+      - cmake -DCMAKE_INSTALL_PREFIX=${FLATPAK_DEST} -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
+        -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib .
       - cmake --build .
       - cmake --install .
-      - cd python && python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - cd python && python3 -mpip install . --no-index --find-links=file://${PWD}
+        --prefix=${FLATPAK_DEST} --no-build-isolation
     sources:
       - type: archive
         url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.5.tar.gz
