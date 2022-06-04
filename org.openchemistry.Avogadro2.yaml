@@ -188,13 +188,13 @@ modules:
   - name: spglib
     buildsystem: simple
     ensure-writable:
-      - /lib/python3.9/site-packages/easy-install.pth
+      - /lib/python3/site-packages/easy-install.pth
     build-commands:
       - cmake -DCMAKE_INSTALL_PREFIX=${FLATPAK_DEST} -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib
         .
       - cmake --build .
       - cmake --install .
-      - cd python && python3.9 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - cd python && python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
     sources:
       - type: archive
         url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.5.tar.gz
