@@ -70,8 +70,8 @@ modules:
       - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_1.tar.gz
-        sha256: 92552458f35c7e58128ce1bfc2831abf901cc142ea0fdd2b056311e4452db7bf
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_2.tar.gz
+        sha256: 6b97168ce262d7f9fa67355171e8e1899989046bf70ca5735341b0872760af9a
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -198,8 +198,8 @@ modules:
         --prefix=${FLATPAK_DEST} --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v1.16.5.tar.gz
-        sha256: 1bbde03b6b78da756c07f458bd90d84f3c253841b9b0632db5b72c5961e87aef
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.0.0.tar.gz
+        sha256: 426c4004e84fdb732d86aa5fcada5257ca8bc7a6915c06ced27565176c16ee96
         x-checker-data:
           type: anitya
           project-id: 14891
