@@ -354,7 +354,7 @@ modules:
         dest: Avogadro2
         x-checker-data:
           type: anitya
-          project-id:
+          project-id: 221509
           stable-only: true
           url-template: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/$version.tar.gz
       - type: archive
