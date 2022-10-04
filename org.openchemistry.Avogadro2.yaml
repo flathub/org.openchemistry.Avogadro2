@@ -149,6 +149,21 @@ modules:
           stable-only: true
           url-template: https://github.com/msgpack/msgpack-c/releases/download/cpp-$version/msgpack-$version.tar.gz
 
+  - name: Boost
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap.sh --prefix=/app
+      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+    sources:
+      - type: archive
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
+        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
+        x-checker-data:
+          type: anitya
+          project-id: 6845
+          stable-only: true
+          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+
   - name: OpenBabel
     buildsystem: cmake
     builddir: true
@@ -158,8 +173,10 @@ modules:
       - -DOPTIMIZE_NATIVE:BOOL=OFF
       - -DOB_USE_PREBUILT_BINARIES:BOOL=OFF
       - -DENABLE_VERSIONED_FORMATS:BOOL=OFF
-      - -DWITH_JSON:BOOL=OFF
-      - -DWITH_MAEPARSER:BOOL=OFF
+      - -DWITH_JSON:BOOL=ON
+      - -DWITH_MAEPARSER:BOOL=ON
+      - -DWITH_INCHI:BOOL=ON
+      - -DBUILD_SHARED:BOOL=ON
     sources:
       - type: archive
         url: https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-3.1.1-source.tar.bz2
