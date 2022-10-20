@@ -38,8 +38,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/f4/66/17b8e95770478436bf968353c89683ce6f9e14d92e0d4fb3111c09ba18d2/numpy-1.23.2.tar.gz
-        sha256: b78d00e48261fbbd04aa0d7427cf78d18401ee0abd89c7559bbf422e5b1c7d01
+        url: https://files.pythonhosted.org/packages/64/8e/9929b64e146d240507edaac2185cd5516f00b133be5b39250d253be25a64/numpy-1.23.4.tar.gz
+        sha256: ed2cc92af0efad20198638c69bb0fc2870a58dabfba6eb722c933b48556c686c
         x-checker-data:
           type: pypi
           name: numpy
@@ -122,8 +122,8 @@ modules:
       - -Dmmtf_build_examples:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.0.0.tar.gz
-        sha256: 881f69c4bb56605fa63fd5ca50842facc4947f686cbf678ad04930674d714f40
+        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.1.0.tar.gz
+        sha256: 021173bdc1814b1d0541c4426277d39df2b629af53151999b137e015418f76c0
         x-checker-data:
           type: anitya
           project-id: 221487
@@ -153,11 +153,12 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared
+        cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
-        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -261,24 +262,24 @@ modules:
 
     # Avogadrolibs does not build with VTK 9.0.1
     # https://github.com/OpenChemistry/avogadrolibs/issues/516
-  - name: VTK
-    buildsystem: cmake-ninja
-    builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-    config-opts:
-      - -DBUILD_SHARED_LIBS=ON
-      - -DOpenGL_GL_PREFERENCE=GLVND
-      - -DBUILD_TESTING:BOOL=OFF
-      - -DVTK_GROUP_ENABLE_Qt:BOOL=YES
-      - -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=OFF
-    sources:
-      - type: archive
-        url: https://www.vtk.org/files/release/9.2/VTK-9.2.0.rc1.tar.gz
-        sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
+  # - name: VTK
+  #   buildsystem: cmake-ninja
+  #   builddir: true
+  #   build-options:
+  #     cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+  #       -fstack-clash-protection -flto -fno-fat-lto-objects
+  #     cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+  #       -fstack-clash-protection -flto -fno-fat-lto-objects
+  #   config-opts:
+  #     - -DBUILD_SHARED_LIBS=ON
+  #     - -DOpenGL_GL_PREFERENCE=GLVND
+  #     - -DBUILD_TESTING:BOOL=OFF
+  #     - -DVTK_GROUP_ENABLE_Qt:BOOL=YES
+  #     - -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=OFF
+  #   sources:
+  #     - type: archive
+  #       url: https://www.vtk.org/files/release/9.2/VTK-9.2.0.rc1.tar.gz
+  #       sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
 
   #- name: genXrd
     #buildsystem: cmake-ninja
@@ -316,7 +317,7 @@ modules:
       - -DUSE_MMTF:BOOL=ON
       - -DUSE_MOLEQUEUE:BOOL=ON
       - -DUSE_PROTOCALL:BOOL=OFF
-      - -DUSE_VTK:BOOL=ON
+      - -DUSE_VTK:BOOL=OFF
       - -DBUILD_GPL_PLUGINS:BOOL=ON
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
       - -Dlibmsym_DIR:PATH=${FLATPAK_DEST}/lib/cmake/libmsym
