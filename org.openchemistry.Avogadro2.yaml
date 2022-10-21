@@ -130,38 +130,35 @@ modules:
           stable-only: true
           url-template: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v$version.tar.gz
 
-  - name: Boost
-    buildsystem: simple
-    build-commands:
-      - ./bootstrap.sh --prefix=/app
-      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared
-        cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
-    sources:
-      - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
-        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
-        x-checker-data:
-          type: anitya
-          project-id: 6845
-          stable-only: true
-          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+  # - name: Boost
+  #   buildsystem: simple
+  #   build-commands:
+  #     - ./bootstrap.sh --prefix=/app
+  #     - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared
+  #       cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+  #   sources:
+  #     - type: archive
+  #       url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+  #       sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
+  #       x-checker-data:
+  #         type: anitya
+  #         project-id: 6845
+  #         stable-only: true
+  #         url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
 
   - name: msgpack
     buildsystem: cmake
     config-opts:
+      - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DBUILD_SHARED_LIBS:BOOL=ON
-      # - -DMSGPACK_ENABLE_STATIC:BOOL=OFF
-      # - -DCMAKE_INSTALL_LIBDIR:PATH=lib
+      - -DMSGPACK_ENABLE_STATIC:BOOL=OFF
+      - -DCMAKE_INSTALL_LIBDIR:PATH=lib
       - -DMSGPACK_BUILD_EXAMPLES:BOOL=OFF
-      - -DMSGPACK_BUILD_DOCS:BOOL=OFF
-      - -DMSGPACK_CXX20:BOOL=ON
-      - -DMSGPACK_BUILD_TESTS:BOOL=ON
-    post-install:
-      - make test
+      - -DMSGPACK_CXX11:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-4.1.2/msgpack-cxx-4.1.2.tar.gz
-        sha256: eeddd7faeacbc12e10052bd1e3ec78bd26c69bfbbea9f9264c7ffce9b1ede7b1
+        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
+        sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
         x-checker-data:
           type: anitya
           project-id: 12278
