@@ -348,7 +348,7 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 0365aa346ccc9f77a849cd10964ebcace96621f847216546e49c386f071119e7
+        sha256: 8c8f18376fb6c3d70008bda713d3f0b2ef34752e8602857dc9e58a70d381d7cb
         dest: crystals
         dest-filename: crystals.zip
       #- type: file
