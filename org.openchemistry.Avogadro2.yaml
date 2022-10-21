@@ -130,25 +130,6 @@ modules:
           stable-only: true
           url-template: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v$version.tar.gz
 
-  - name: msgpack
-    buildsystem: cmake
-    config-opts:
-      - -DCMAKE_INSTALL_PREFIX:PATH=/app
-      - -DBUILD_SHARED_LIBS:BOOL=ON
-      - -DMSGPACK_ENABLE_STATIC:BOOL=OFF
-      - -DCMAKE_INSTALL_LIBDIR:PATH=lib
-      - -DMSGPACK_BUILD_EXAMPLES:BOOL=OFF
-      - -DMSGPACK_CXX11:BOOL=ON
-    sources:
-      - type: archive
-        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
-        sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
-        x-checker-data:
-          type: anitya
-          project-id: 12278
-          stable-only: true
-          url-template: https://github.com/msgpack/msgpack-c/releases/download/cpp-$version/msgpack-$version.tar.gz
-
   - name: Boost
     buildsystem: simple
     build-commands:
@@ -164,6 +145,28 @@ modules:
           project-id: 6845
           stable-only: true
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+
+  - name: msgpack
+    buildsystem: cmake
+    config-opts:
+      - -DBUILD_SHARED_LIBS:BOOL=ON
+      # - -DMSGPACK_ENABLE_STATIC:BOOL=OFF
+      # - -DCMAKE_INSTALL_LIBDIR:PATH=lib
+      - -DMSGPACK_BUILD_EXAMPLES:BOOL=OFF
+      - -DMSGPACK_BUILD_DOCS:BOOL=OFF
+      - -DMSGPACK_CXX20:BOOL=ON
+      - -DMSGPACK_BUILD_TESTS:BOOL=ON
+    post-install:
+      - make test
+    sources:
+      - type: archive
+        url: https://github.com/msgpack/msgpack-c/releases/download/cpp-4.1.2/msgpack-cxx-4.1.2.tar.gz
+        sha256: eeddd7faeacbc12e10052bd1e3ec78bd26c69bfbbea9f9264c7ffce9b1ede7b1
+        x-checker-data:
+          type: anitya
+          project-id: 12278
+          stable-only: true
+          url-template: https://github.com/msgpack/msgpack-c/releases/download/cpp-$version/msgpack-cxx-$version.tar.gz
 
   - name: OpenBabel
     buildsystem: cmake
@@ -246,6 +249,13 @@ modules:
       - type: file
         path: org.openchemistry.Avogadro2.Molequeue.desktop
 
+  - name: test
+    buildsystem: simple
+    build-commands:
+      - cmake --version
+      - gcc --version
+      - qmake --version
+
   #- name: protobuf
     #buildsystem: cmake
     #subdir: cmake
@@ -321,7 +331,7 @@ modules:
       - -DBUILD_GPL_PLUGINS:BOOL=ON
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
       - -Dlibmsym_DIR:PATH=${FLATPAK_DEST}/lib/cmake/libmsym
-      - -Dpybind11_DIR:PATH=${FLATPAK_DEST}/lib/python3.8/site-packages/pybind11-2.6.2-py3.8.egg/pybind11/share/cmake/pybind11/
+      - -Dpybind11_DIR:PATH=${FLATPAK_DEST}/lib/python3.9/site-packages/pybind11-2.6.2-py3.9.egg/pybind11/share/cmake/pybind11/
     sources:
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs
