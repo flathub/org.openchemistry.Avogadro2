@@ -321,7 +321,7 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 0365aa346ccc9f77a849cd10964ebcace96621f847216546e49c386f071119e7
+        sha256: 8c8f18376fb6c3d70008bda713d3f0b2ef34752e8602857dc9e58a70d381d7cb
         dest: crystals
         dest-filename: crystals.zip
       #- type: file
@@ -361,7 +361,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: cb32911c83d47f6d93d7f6d9193d634b60ce114d283f2be018a064d86ff2479a
+        sha256: c6ac97c51aa950cb0b1cf4d536f7b964edf2e90a08a8af17af0e597aec25d829
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
