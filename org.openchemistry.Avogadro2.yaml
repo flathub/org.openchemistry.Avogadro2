@@ -34,12 +34,11 @@ modules:
   - name: python3-numpy
     buildsystem: simple
     build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
-        --no-build-isolation
+      - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/f4/66/17b8e95770478436bf968353c89683ce6f9e14d92e0d4fb3111c09ba18d2/numpy-1.23.2.tar.gz
-        sha256: b78d00e48261fbbd04aa0d7427cf78d18401ee0abd89c7559bbf422e5b1c7d01
+        url: https://files.pythonhosted.org/packages/64/8e/9929b64e146d240507edaac2185cd5516f00b133be5b39250d253be25a64/numpy-1.23.4.tar.gz
+        sha256: ed2cc92af0efad20198638c69bb0fc2870a58dabfba6eb722c933b48556c686c
         x-checker-data:
           type: pypi
           name: numpy
@@ -122,8 +121,8 @@ modules:
       - -Dmmtf_build_examples:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.0.0.tar.gz
-        sha256: 881f69c4bb56605fa63fd5ca50842facc4947f686cbf678ad04930674d714f40
+        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.1.0.tar.gz
+        sha256: 021173bdc1814b1d0541c4426277d39df2b629af53151999b137e015418f76c0
         x-checker-data:
           type: anitya
           project-id: 221487
@@ -143,7 +142,7 @@ modules:
       - type: archive
         url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
         sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
-        # Disable update
+        # Disable update new msgpack need boost
         # x-checker-data:
         #   type: anitya
         #   project-id: 12278
@@ -361,7 +360,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: c6ac97c51aa950cb0b1cf4d536f7b964edf2e90a08a8af17af0e597aec25d829
+        sha256: 63ee200468a4a95bdcf48baa1ed27398b66b5b85fb9685602b6959a427d405c8
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
