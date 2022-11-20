@@ -357,10 +357,10 @@ modules:
           project-id: 221509
           stable-only: true
           url-template: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/$version.tar.gz
-      - type: archive
-        url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
+      - type: git
+        url: https://github.com/OpenChemistry/avogadro-i18n.git
         dest: avogadro-i18n
-        sha256: 63ee200468a4a95bdcf48baa1ed27398b66b5b85fb9685602b6959a427d405c8
+        commit: f1e8214015fe00cb679327c76f2de1ba0b57de74
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
