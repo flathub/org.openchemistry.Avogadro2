@@ -38,8 +38,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/f4/66/17b8e95770478436bf968353c89683ce6f9e14d92e0d4fb3111c09ba18d2/numpy-1.23.2.tar.gz
-        sha256: b78d00e48261fbbd04aa0d7427cf78d18401ee0abd89c7559bbf422e5b1c7d01
+        url: https://files.pythonhosted.org/packages/ce/b8/c170db50ec49d5845bd771bc5549fe734ee73083c5c52791915f95d8e2bc/numpy-1.24.1.tar.gz
+        sha256: 2386da9a471cc00a1f47845e27d916d5ec5346ae9696e01a8a34760858fe9dd2
         x-checker-data:
           type: pypi
           name: numpy
@@ -70,8 +70,8 @@ modules:
       - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_2.tar.gz
-        sha256: 6b97168ce262d7f9fa67355171e8e1899989046bf70ca5735341b0872760af9a
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_0.tar.gz
+        sha256: 0f2ec13c1bf6e9f506fd03681c83a476d722e7479cad9ce6f8585a26c317d0ad
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -106,8 +106,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.10.0.tar.gz
-        sha256: eacf582fa8f696227988d08cfc46121770823839fe9e301a20fbce67e7cd70ec
+        url: https://github.com/pybind/pybind11/archive/v2.10.3.tar.gz
+        sha256: 5d8c4c5dda428d3a944ba3d2a5212cb988c2fae4670d58075a5a49075a6ca315
         x-checker-data:
           type: anitya
           project-id: 13384
@@ -122,8 +122,8 @@ modules:
       - -Dmmtf_build_examples:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.0.0.tar.gz
-        sha256: 881f69c4bb56605fa63fd5ca50842facc4947f686cbf678ad04930674d714f40
+        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.1.0.tar.gz
+        sha256: 021173bdc1814b1d0541c4426277d39df2b629af53151999b137e015418f76c0
         x-checker-data:
           type: anitya
           project-id: 221487
