@@ -38,8 +38,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/f4/66/17b8e95770478436bf968353c89683ce6f9e14d92e0d4fb3111c09ba18d2/numpy-1.23.2.tar.gz
-        sha256: b78d00e48261fbbd04aa0d7427cf78d18401ee0abd89c7559bbf422e5b1c7d01
+        url: https://files.pythonhosted.org/packages/2c/d4/590ae7df5044465cc9fa2db152ae12468694d62d952b1528ecff328ef7fc/numpy-1.24.3.tar.gz
+        sha256: ab344f1bf21f140adab8e47fdbc7c35a477dc01408791f8ba00d018dd0bc5155
         x-checker-data:
           type: pypi
           name: numpy
@@ -122,8 +122,8 @@ modules:
       - -Dmmtf_build_examples:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.0.0.tar.gz
-        sha256: 881f69c4bb56605fa63fd5ca50842facc4947f686cbf678ad04930674d714f40
+        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.1.0.tar.gz
+        sha256: 021173bdc1814b1d0541c4426277d39df2b629af53151999b137e015418f76c0
         x-checker-data:
           type: anitya
           project-id: 221487
