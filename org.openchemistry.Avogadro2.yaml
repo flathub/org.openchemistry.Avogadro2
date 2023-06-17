@@ -70,8 +70,8 @@ modules:
       - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_2.tar.gz
-        sha256: 6b97168ce262d7f9fa67355171e8e1899989046bf70ca5735341b0872760af9a
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_1-2.tar.gz
+        sha256: c05846ca3f5ab1b2673f4ac1c0ff7b2f5285ab8ab99d25368dce1fdf25ad0a4a
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -106,8 +106,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.10.0.tar.gz
-        sha256: eacf582fa8f696227988d08cfc46121770823839fe9e301a20fbce67e7cd70ec
+        url: https://github.com/pybind/pybind11/archive/v2.10.4.tar.gz
+        sha256: 832e2f309c57da9c1e6d4542dedd34b24e4192ecb4d62f6f4866a737454c9970
         x-checker-data:
           type: anitya
           project-id: 13384
@@ -122,8 +122,8 @@ modules:
       - -Dmmtf_build_examples:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.0.0.tar.gz
-        sha256: 881f69c4bb56605fa63fd5ca50842facc4947f686cbf678ad04930674d714f40
+        url: https://github.com/rcsb/mmtf-cpp/archive/refs/tags/v1.1.0.tar.gz
+        sha256: 021173bdc1814b1d0541c4426277d39df2b629af53151999b137e015418f76c0
         x-checker-data:
           type: anitya
           project-id: 221487
