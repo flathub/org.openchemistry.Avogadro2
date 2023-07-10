@@ -37,8 +37,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/64/8e/9929b64e146d240507edaac2185cd5516f00b133be5b39250d253be25a64/numpy-1.23.4.tar.gz
-        sha256: ed2cc92af0efad20198638c69bb0fc2870a58dabfba6eb722c933b48556c686c
+        url: https://files.pythonhosted.org/packages/cf/7a/f68d1d658a0e68084097beb212fa9356fee7eabff8b57231cc4acb555b12/numpy-1.25.1.tar.gz
+        sha256: 9a3a9f3a61480cc086117b426a8bd86869c213fc4072e606f01c4e4b66eb92bf
         x-checker-data:
           type: pypi
           name: numpy
@@ -69,8 +69,8 @@ modules:
       - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_2.tar.gz
-        sha256: 6b97168ce262d7f9fa67355171e8e1899989046bf70ca5735341b0872760af9a
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_1-2.tar.gz
+        sha256: c05846ca3f5ab1b2673f4ac1c0ff7b2f5285ab8ab99d25368dce1fdf25ad0a4a
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -105,8 +105,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.10.0.tar.gz
-        sha256: eacf582fa8f696227988d08cfc46121770823839fe9e301a20fbce67e7cd70ec
+        url: https://github.com/pybind/pybind11/archive/v2.10.4.tar.gz
+        sha256: 832e2f309c57da9c1e6d4542dedd34b24e4192ecb4d62f6f4866a737454c9970
         x-checker-data:
           type: anitya
           project-id: 13384
