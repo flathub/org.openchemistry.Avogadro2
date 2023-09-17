@@ -57,8 +57,20 @@ modules:
         tag: 1.2.0
         commit: abe01ae3d61f12852184746491814644a7cd9cf0
 
-  - python_deps.json
-  # python3 flatpak-pip-generator tomli packaging pyproject_metadata numpy pybind11 -o python_deps && fb
+  - numpy.json
+  # python3 flatpak-pip-generator tomli packaging pyproject_metadata numpy -o python_deps && fb
+
+  - name: pybind11
+    buildsystem: simple
+    build-commands:
+      - python3.8 setup.py build
+      - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF .
+      - cmake --build .
+      - python3.8 setup.py install --skip-build --force --prefix=/app
+    sources:
+      - type: archive
+        url: https://github.com/pybind/pybind11/archive/v2.6.2.tar.gz
+        sha256: 8ff2fff22df038f5cd02cea8af56622bc67f5b64534f1b83b9f133b8366acff2
 
   - name: Eigen3
     buildsystem: cmake-ninja
