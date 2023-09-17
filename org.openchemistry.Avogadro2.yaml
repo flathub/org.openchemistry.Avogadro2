@@ -31,13 +31,32 @@ modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
 
-  - name: OpenBLAS # dependency for Numpy
-    no-autogen: true
-    make-args:
-      - DYNAMIC_ARCH=1
-      - DYNAMIC_OLDER=1
-      - FC=gfortran
-      - TARGET=GENERIC
+  # - name: OpenBLAS # dependency for scipy
+  #   no-autogen: true
+  #   make-args:
+  #     - DYNAMIC_ARCH=1
+  #     - DYNAMIC_OLDER=1
+  #     - FC=gfortran
+  #     - NO_CBLAS=0
+  #     - NO_LAPACKE=1
+  #     - TARGET=GENERIC
+  #   make-install-args:
+  #     - PREFIX=/app
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
+  #       sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+  #       x-checker-data:
+  #         type: anitya
+  #         project-id: 2540
+  #         url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
+
+  - name: OpenBLAS # dependency for scipy
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DDYNAMIC_ARCH:BOOL=ON
     sources:
       - type: archive
         url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
@@ -47,20 +66,19 @@ modules:
           project-id: 2540
           url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
 
+  - name: meson
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py build
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/
+    sources:
+      - type: git
+        url: https://github.com/mesonbuild/meson.git
+        tag: 1.2.0
+        commit: abe01ae3d61f12852184746491814644a7cd9cf0
+
   - python_deps.json
   # python3 flatpak-pip-generator tomli packaging pyproject_metadata numpy pybind11 -o python_deps && fb
-  # - name: python3-numpy
-  #   buildsystem: simple
-  #   build-commands:
-  #     - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
-  #       --no-build-isolation
-  #   sources:
-  #     - type: archive
-  #       url: https://files.pythonhosted.org/packages/55/b3/b13bce39ba82b7398c06d10446f5ffd5c07db39b09bd37370dc720c7951c/numpy-1.26.0.tar.gz
-  #       sha256: f93fc78fe8bf15afe2b8d6b6499f1c73953169fad1e9a8dd086cdff3190e7fdf
-  #       x-checker-data:
-  #         type: pypi
-  #         name: numpy
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -112,26 +130,6 @@ modules:
           stable-only: true
           url-template: https://github.com/mcodev31/libmsym/archive/refs/tags/v$version.tar.gz
 
-  # - name: pybind11
-  #   buildsystem: simple
-  #   build-commands:
-  #     - python3 setup.py build
-  #     - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
-  #       -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib -DCMAKE_INSTALL_DATAROOTDIR:PATH=${FLATPAK_DEST}/share
-  #       .
-  #     - python3 setup.py install --prefix=${FLATPAK_DEST}
-  #     - cmake --build .
-  #     - cmake --install .
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/pybind/pybind11/archive/v2.11.1.tar.gz
-  #       sha256: d475978da0cdc2d43b73f30910786759d593a9d8ee05b1b6846d1eb16c6d2e0c
-  #       x-checker-data:
-  #         type: anitya
-  #         project-id: 13384
-  #         stable-only: true
-  #         url-template: https://github.com/pybind/pybind11/archive/v$version.tar.gz
-
   - name: mmtf-cpp
     buildsystem: cmake
     config-opts:
@@ -161,11 +159,6 @@ modules:
       - type: archive
         url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
         sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 12278
-        #   stable-only: true
-        #   url-template: https://github.com/msgpack/msgpack-c/releases/download/cpp-$version/msgpack-$version.tar.gz
 
   - name: OpenBabel
     buildsystem: cmake
@@ -187,6 +180,8 @@ modules:
           project-id: 2539
           stable-only: true
           url-template: https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-$version-source.tar.bz2
+      - type: patch
+        path: openbabel_time.patch
 
   - name: zeromq
     buildsystem: cmake-ninja
