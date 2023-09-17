@@ -34,11 +34,12 @@ modules:
   - name: python3-numpy
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/cf/7a/f68d1d658a0e68084097beb212fa9356fee7eabff8b57231cc4acb555b12/numpy-1.25.1.tar.gz
-        sha256: 9a3a9f3a61480cc086117b426a8bd86869c213fc4072e606f01c4e4b66eb92bf
+        url: https://files.pythonhosted.org/packages/55/b3/b13bce39ba82b7398c06d10446f5ffd5c07db39b09bd37370dc720c7951c/numpy-1.26.0.tar.gz
+        sha256: f93fc78fe8bf15afe2b8d6b6499f1c73953169fad1e9a8dd086cdff3190e7fdf
         x-checker-data:
           type: pypi
           name: numpy
@@ -69,8 +70,8 @@ modules:
       - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_1-2.tar.gz
-        sha256: c05846ca3f5ab1b2673f4ac1c0ff7b2f5285ab8ab99d25368dce1fdf25ad0a4a
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_2.tar.gz
+        sha256: 83eaee3f9d1790bb4b29368bf1a648ece763097a4122c80a81076e8fb1e890e6
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -105,8 +106,8 @@ modules:
       - cmake --install .
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.10.4.tar.gz
-        sha256: 832e2f309c57da9c1e6d4542dedd34b24e4192ecb4d62f6f4866a737454c9970
+        url: https://github.com/pybind/pybind11/archive/v2.11.1.tar.gz
+        sha256: d475978da0cdc2d43b73f30910786759d593a9d8ee05b1b6846d1eb16c6d2e0c
         x-checker-data:
           type: anitya
           project-id: 13384
@@ -142,7 +143,6 @@ modules:
       - type: archive
         url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
         sha256: 6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
-        # Disable update new msgpack need boost
         # x-checker-data:
         #   type: anitya
         #   project-id: 12278
@@ -244,43 +244,24 @@ modules:
 
     # Avogadrolibs does not build with VTK 9.0.1
     # https://github.com/OpenChemistry/avogadrolibs/issues/516
-  # - name: VTK
-  #   buildsystem: cmake-ninja
-  #   builddir: true
-  #   build-options:
-  #     cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-  #       -fstack-clash-protection -flto -fno-fat-lto-objects
-  #     cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-  #       -fstack-clash-protection -flto -fno-fat-lto-objects
-  #   config-opts:
-  #     - -DBUILD_SHARED_LIBS=ON
-  #     - -DOpenGL_GL_PREFERENCE=GLVND
-  #     - -DBUILD_TESTING:BOOL=OFF
-  #     - -DVTK_GROUP_ENABLE_Qt:BOOL=YES
-  #     - -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=OFF
-  #   sources:
-  #     - type: archive
-  #       url: https://www.vtk.org/files/release/9.2/VTK-9.2.0.rc1.tar.gz
-  #       sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
-
-  #- name: genXrd
-    #buildsystem: cmake-ninja
-    #builddir: true
-    ##build-options:
-      ##cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        ##-fstack-clash-protection -flto -fno-fat-lto-objects
-      ##cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        ##-fstack-clash-protection -flto -fno-fat-lto-objects
-    #config-opts:
-    ##- -DBUILD_SHARED_LIBS=ON
-    ##- -DOpenGL_GL_PREFERENCE=GLVND
-    ##- -DBUILD_TESTING:BOOL=OFF
-    ##- -DVTK_GROUP_ENABLE_Qt:BOOL=YES
-    ##- -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=OFF
-    #sources:
-      #- type: archive
-        #url: https://github.com/psavery/genXrdPattern/archive/refs/tags/1.1-linux.tar.gz
-        #sha256: 9bc01dbf637d6520d8e2f5743bb1b46f8319432af5ce2d2a484a36615c1586d3
+  - name: VTK
+    buildsystem: cmake-ninja
+    builddir: true
+    build-options:
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+    config-opts:
+      - -DBUILD_SHARED_LIBS=ON
+      - -DOpenGL_GL_PREFERENCE=GLVND
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DVTK_GROUP_ENABLE_Qt:BOOL=YES
+      - -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=OFF
+    sources:
+      - type: archive
+        url: https://www.vtk.org/files/release/9.2/VTK-9.2.0.rc1.tar.gz
+        sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
 
   - name: avogadrolibs
     buildsystem: cmake
@@ -299,7 +280,7 @@ modules:
       - -DUSE_MMTF:BOOL=ON
       - -DUSE_MOLEQUEUE:BOOL=ON
       - -DUSE_PROTOCALL:BOOL=OFF
-      - -DUSE_VTK:BOOL=OFF
+      - -DUSE_VTK:BOOL=ON
       - -DBUILD_GPL_PLUGINS:BOOL=ON
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
       - -Dlibmsym_DIR:PATH=${FLATPAK_DEST}/lib/cmake/libmsym
@@ -320,7 +301,7 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 8c8f18376fb6c3d70008bda713d3f0b2ef34752e8602857dc9e58a70d381d7cb
+        sha256: 0365aa346ccc9f77a849cd10964ebcace96621f847216546e49c386f071119e7
         dest: crystals
         dest-filename: crystals.zip
       #- type: file
@@ -357,10 +338,10 @@ modules:
           project-id: 221509
           stable-only: true
           url-template: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/$version.tar.gz
-      - type: git
-        url: https://github.com/OpenChemistry/avogadro-i18n.git
+      - type: archive
+        url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        commit: f1e8214015fe00cb679327c76f2de1ba0b57de74
+        sha256: cb32911c83d47f6d93d7f6d9193d634b60ce114d283f2be018a064d86ff2479a
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
