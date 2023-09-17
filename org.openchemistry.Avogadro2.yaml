@@ -31,27 +31,7 @@ modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
 
-  # - name: OpenBLAS # dependency for scipy
-  #   no-autogen: true
-  #   make-args:
-  #     - DYNAMIC_ARCH=1
-  #     - DYNAMIC_OLDER=1
-  #     - FC=gfortran
-  #     - NO_CBLAS=0
-  #     - NO_LAPACKE=1
-  #     - TARGET=GENERIC
-  #   make-install-args:
-  #     - PREFIX=/app
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
-  #       sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
-  #       x-checker-data:
-  #         type: anitya
-  #         project-id: 2540
-  #         url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
-
-  - name: OpenBLAS # dependency for scipy
+  - name: OpenBLAS
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
