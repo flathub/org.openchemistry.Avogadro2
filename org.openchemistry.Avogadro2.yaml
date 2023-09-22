@@ -31,15 +31,35 @@ modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
 
+  - name: googletest
+    buildsystem: cmake-ninja
+    builddir: true
+    cleanup: "*"
+    sources:
+      - type: archive
+        url: https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz
+        sha256: 8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7
+
+  # - name: Catch2
+  #   buildsystem: cmake-ninja
+  #   builddir: true
+  #   cleanup: "*"
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/catchorg/Catch2/archive/refs/tags/v2.13.10.tar.gz
+  #       sha256: d54a712b7b1d7708bc7a819a8e6e47b2fde9536f487b89ccbca295072a7d9943
+
   - name: OpenBLAS
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DBUILD_TESTING:BOOL=OFF
+      - -DBUILD_TESTING:BOOL=ON
       - -DDYNAMIC_ARCH:BOOL=ON
+    post-install:
+      - ctest --rerun-failed --output-on-failure --stop-on-failure #test
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
+        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.24/OpenBLAS-0.3.24.tar.gz
         sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
         x-checker-data:
           type: anitya
@@ -57,20 +77,37 @@ modules:
         tag: 1.2.0
         commit: abe01ae3d61f12852184746491814644a7cd9cf0
 
-  - numpy.json
-  # python3 flatpak-pip-generator tomli packaging pyproject_metadata numpy -o python_deps && fb
-
-  - name: pybind11
+  # - numpy.json
+  # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup hypothesis pytest -o python_deps && fb
+  # - pytest.json
+  - python_deps.json
+  - name: python-numpy
     buildsystem: simple
+    build-options:
+      ldflags: "-lgfortran"
     build-commands:
-      - python3.8 setup.py build
-      - cmake -DPYBIND11_INSTALL=ON -DPYBIND11_TEST=OFF .
-      - cmake --build .
-      - python3.8 setup.py install --skip-build --force --prefix=/app
+      - pip3 install --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation .
+      - cd .. && python3 -c "import numpy, sys; sys.exit(numpy.test() is False)"
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.6.2.tar.gz
-        sha256: 8ff2fff22df038f5cd02cea8af56622bc67f5b64534f1b83b9f133b8366acff2
+        url: https://github.com/numpy/numpy/releases/download/v1.26.0/numpy-1.26.0.tar.gz
+        sha256: f93fc78fe8bf15afe2b8d6b6499f1c73953169fad1e9a8dd086cdff3190e7fdf
+        x-checker-data:
+          type: pypi
+          name: numpy
+
+  - name: pybind11
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DPYBIND11_INSTALL:BOOL=ON
+      - -DPYBIND11_TEST:BOOL=OFF
+      - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.10
+    sources:
+      - type: archive
+        url: https://github.com/pybind/pybind11/archive/v2.11.1.tar.gz
+        sha256: d475978da0cdc2d43b73f30910786759d593a9d8ee05b1b6846d1eb16c6d2e0c
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -91,8 +128,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING:BOOL=OFF
+      - -DBUILD_TESTING:BOOL=ON
       - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
     cleanup:
       - /share/hdf5_examples
@@ -109,7 +145,6 @@ modules:
   - name: libmsym
     buildsystem: cmake
     config-opts:
-      - -DCMAKE_INSTALL_PREFIX:PATH=/app
       - -DMSYM_BUILD_PYTHON:BOOL=ON
       - -DBUILD_SHARED_LIBS:BOOL=ON
     sources:
@@ -126,7 +161,7 @@ modules:
     buildsystem: cmake
     config-opts:
       - -DBUILD_TESTS:BOOL=OFF
-      - -Dmmtf_build_local:BOOL=ON
+      - -Dmmtf_build_local:BOOL=OFF
       - -Dmmtf_build_examples:BOOL=OFF
     sources:
       - type: archive
@@ -146,7 +181,7 @@ modules:
       - -DMSGPACK_ENABLE_STATIC:BOOL=OFF
       - -DCMAKE_INSTALL_LIBDIR:PATH=lib
       - -DMSGPACK_BUILD_EXAMPLES:BOOL=OFF
-      - -DMSGPACK_CXX11:BOOL=ON
+      - -DMSGPACK_CXX17:BOOL=ON
     sources:
       - type: archive
         url: https://github.com/msgpack/msgpack-c/releases/download/cpp-3.3.0/msgpack-3.3.0.tar.gz
@@ -178,8 +213,6 @@ modules:
   - name: zeromq
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
         url: https://github.com/zeromq/libzmq/releases/download/v4.3.4/zeromq-4.3.4.tar.gz
@@ -190,21 +223,28 @@ modules:
           stable-only: true
           url-template: https://github.com/zeromq/libzmq/releases/download/v$version/zeromq-$version.tar.gz
 
+  - pyyaml.json
+
   - name: spglib
-    buildsystem: simple
-    ensure-writable:
-      - /lib/python3/site-packages/easy-install.pth
-    build-commands:
-      - cmake -DCMAKE_INSTALL_PREFIX=${FLATPAK_DEST} -DCMAKE_INSTALL_INCLUDEDIR:PATH=${FLATPAK_DEST}/include
-        -DCMAKE_INSTALL_LIBDIR:PATH=${FLATPAK_DEST}/lib .
-      - cmake --build .
-      - cmake --install .
-      - cd python && python3 -mpip install . --no-index --find-links=file://${PWD}
-        --prefix=${FLATPAK_DEST} --no-build-isolation
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DSPGLIB_WITH_Fortran=ON
+      - -DSPGLIB_WITH_Python=ON
+      - -DSPGLIB_USE_OMP=OFF
+      - -DSPGLIB_WITH_TESTS=ON
+      - -DSPGLIB_SHARED_LIBS=ON
+      - -DSPGLIB_INSTALL=ON
+      - -DSPGLIB_TEST_COVERAGE=OFF
+      - -DPython3_NumPy_INCLUDE_DIR=/app/lib/python3.10/site-packages/numpy/core/include
+      - -DPython_INSTALL_DIR=/app/lib/python3.10/site-packages/spglib
+      - -DCMAKE_INSTALL_RPATH=/app/lib
+    post-install:
+      - ctest --rerun-failed --output-on-failure #test
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.0.0.tar.gz
-        sha256: 426c4004e84fdb732d86aa5fcada5257ca8bc7a6915c06ced27565176c16ee96
+        url: https://github.com/spglib/spglib/archive/refs/heads/develop.zip
+        sha256: 6b834a0e9dde3ced56849648282a78b72a94272ec48681f82f673441bd835ea2
         x-checker-data:
           type: anitya
           project-id: 14891
@@ -233,30 +273,11 @@ modules:
       - type: file
         path: org.openchemistry.Avogadro2.Molequeue.desktop
 
-  #- name: protobuf
-    #buildsystem: cmake
-    #subdir: cmake
-    #sources:
-      #- type: archive
-        #url: https://github.com/protocolbuffers/protobuf/releases/download/v3.15.6/protobuf-cpp-3.15.6.tar.gz
-        #sha256: bbdfb7455431d7d58666e8a2996d14b236718ff238eecde10646581e4c87f168
-
-  #- name: protocall-OpenChemistry
-    #buildsystem: cmake
-    #sources:
-      #- type: git
-        #url: https://github.com/OpenChemistry/protocall
-
     # Avogadrolibs does not build with VTK 9.0.1
     # https://github.com/OpenChemistry/avogadrolibs/issues/516
   - name: VTK
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
       - -DOpenGL_GL_PREFERENCE=GLVND
@@ -283,18 +304,17 @@ modules:
       - -DUSE_LIBMSYM:BOOL=ON
       - -DUSE_SPGLIB:BOOL=ON
       - -DUSE_MMTF:BOOL=ON
-      - -DUSE_MOLEQUEUE:BOOL=ON
-      - -DUSE_PROTOCALL:BOOL=OFF
       - -DUSE_VTK:BOOL=ON
       - -DBUILD_GPL_PLUGINS:BOOL=ON
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
-      - -Dlibmsym_DIR:PATH=${FLATPAK_DEST}/lib/cmake/libmsym
-      - -Dpybind11_DIR:PATH=${FLATPAK_DEST}/lib/python3.8/site-packages/pybind11-2.6.2-py3.8.egg/pybind11/share/cmake/pybind11/
+      - -DENABLE_TESTING:BOOL=ON
+    post-install:
+      - ctest --rerun-failed --output-on-failure --stop-on-failure #test
     sources:
       - type: git
-        url: https://github.com/OpenChemistry/avogadrolibs
-        tag: 1.97.0
-        commit: 82938e4f5ce188a1e53300d263167bebe717f5b2
+        url: https://github.com/kevinsmia1939/avogadrolibs
+        # tag: master
+        commit: 2e6b2dce34b5d836532f705c28dddbf5b1ede707
         dest: avogadrolibs
         x-checker-data:
           type: git
@@ -323,7 +343,11 @@ modules:
       - -DENABLE_TESTING:BOOL=OFF
       - -DBUILD_DOCUMENTATION:BOOL=OFF
       - -DCMAKE_BUILD_TYPE:STRING=Release
+      - -DEIGEN3_INCLUDE_DIR=/app/include/eigen3
+    build-options:
+      ldflags: "-Wl,--copy-dt-needed-entries"
     post-install:
+      - ctest --rerun-failed --output-on-failure --stop-on-failure
       - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
