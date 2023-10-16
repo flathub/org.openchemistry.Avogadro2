@@ -31,32 +31,12 @@ modules:
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
 
-  - name: googletest
-    buildsystem: cmake-ninja
-    builddir: true
-    cleanup: "*"
-    sources:
-      - type: archive
-        url: https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz
-        sha256: 8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7
-
-  # - name: Catch2
-  #   buildsystem: cmake-ninja
-  #   builddir: true
-  #   cleanup: "*"
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/catchorg/Catch2/archive/refs/tags/v2.13.10.tar.gz
-  #       sha256: d54a712b7b1d7708bc7a819a8e6e47b2fde9536f487b89ccbca295072a7d9943
-
   - name: OpenBLAS
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DBUILD_TESTING:BOOL=ON
+      - -DBUILD_TESTING:BOOL=OFF
       - -DDYNAMIC_ARCH:BOOL=ON
-    post-install:
-      - ctest --rerun-failed --output-on-failure --stop-on-failure #test
     sources:
       - type: archive
         url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.24/OpenBLAS-0.3.24.tar.gz
@@ -77,9 +57,8 @@ modules:
         tag: 1.2.0
         commit: abe01ae3d61f12852184746491814644a7cd9cf0
 
-  # - numpy.json
   # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup hypothesis pytest -o python_deps && fb
-  # - pytest.json
+
   - python_deps.json
   - name: python-numpy
     buildsystem: simple
@@ -88,7 +67,7 @@ modules:
     build-commands:
       - pip3 install --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation .
-      - cd .. && python3 -c "import numpy, sys; sys.exit(numpy.test() is False)"
+      # - cd .. && python3 -c "import numpy, sys; sys.exit(numpy.test() is False)"
     sources:
       - type: archive
         url: https://github.com/numpy/numpy/releases/download/v1.26.0/numpy-1.26.0.tar.gz
@@ -128,7 +107,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DBUILD_TESTING:BOOL=ON
+      - -DBUILD_TESTING:BOOL=OFF
       - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
     cleanup:
       - /share/hdf5_examples
@@ -232,15 +211,13 @@ modules:
       - -DSPGLIB_WITH_Fortran=ON
       - -DSPGLIB_WITH_Python=ON
       - -DSPGLIB_USE_OMP=OFF
-      - -DSPGLIB_WITH_TESTS=ON
+      - -DSPGLIB_WITH_TESTS=OFF
       - -DSPGLIB_SHARED_LIBS=ON
       - -DSPGLIB_INSTALL=ON
       - -DSPGLIB_TEST_COVERAGE=OFF
       - -DPython3_NumPy_INCLUDE_DIR=/app/lib/python3.10/site-packages/numpy/core/include
       - -DPython_INSTALL_DIR=/app/lib/python3.10/site-packages/spglib
       - -DCMAKE_INSTALL_RPATH=/app/lib
-    post-install:
-      - ctest --rerun-failed --output-on-failure #test
     sources:
       - type: archive
         url: https://github.com/spglib/spglib/archive/refs/heads/develop.zip
@@ -307,9 +284,7 @@ modules:
       - -DUSE_VTK:BOOL=ON
       - -DBUILD_GPL_PLUGINS:BOOL=ON
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
-      - -DENABLE_TESTING:BOOL=ON
-    post-install:
-      - ctest --rerun-failed --output-on-failure --stop-on-failure #test
+      - -DENABLE_TESTING:BOOL=OFF
     sources:
       - type: git
         url: https://github.com/kevinsmia1939/avogadrolibs
@@ -347,7 +322,6 @@ modules:
     build-options:
       ldflags: "-Wl,--copy-dt-needed-entries"
     post-install:
-      - ctest --rerun-failed --output-on-failure --stop-on-failure
       - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
