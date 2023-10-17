@@ -286,7 +286,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/kevinsmia1939/avogadrolibs
-        # tag: master
         commit: 2e6b2dce34b5d836532f705c28dddbf5b1ede707
         dest: avogadrolibs
         x-checker-data:
@@ -299,14 +298,9 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 8c8f18376fb6c3d70008bda713d3f0b2ef34752e8602857dc9e58a70d381d7cb
+        sha256: 21df4ac95670efbac14cac3a7e77ed4293af39143cd02977585bb8a0e729f247
         dest: crystals
         dest-filename: crystals.zip
-      #- type: file
-        #url: https://github.com/psavery/genXrdPattern/releases/download/1.0-static/linux64-genXrdPattern
-        #sha256: 5e0b8f2b463952fd16a92d70b972e4f88af8f6c00e51126a5bd6e2ab243e2ba7
-        #dest: avogadrolibs/${FLATPAK_BUILDER_BUILDDIR}/bin
-        #dest-filename: genXrdPattern
 
   - name: Avogadro2
     subdir: Avogadro2
@@ -341,7 +335,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: 75a72f8ab1ce4bc71e0d1a3006d456c72f905279ee30a02feb65fa4d3aa2e27f
+        sha256: 2f578f456d73a69d48b6e6b5b8be938b75042e9003d6ea92e7b85ae9254fca35
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
