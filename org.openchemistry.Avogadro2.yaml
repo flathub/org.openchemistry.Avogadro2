@@ -57,7 +57,7 @@ modules:
         tag: 1.2.0
         commit: abe01ae3d61f12852184746491814644a7cd9cf0
 
-  # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup hypothesis pytest -o python_deps && fb
+  # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup -o python_deps && fb
 
   - python_deps.json
   - name: python-numpy
@@ -201,8 +201,6 @@ modules:
           project-id: 16245
           stable-only: true
           url-template: https://github.com/zeromq/libzmq/releases/download/v$version/zeromq-$version.tar.gz
-
-  - pyyaml.json
 
   - name: spglib
     buildsystem: cmake
