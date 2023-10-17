@@ -294,7 +294,7 @@ modules:
           tag-pattern: ^([\d.]+)$
       - type: archive
         url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
-        sha256: 8d6153a0b87bf5db01eab5dbb102a3aecd2ae4b160af9f6dfe531d51b4811172
+        sha256: 18177d79f484e3dc5346b76532e69690f93f2e9e93a0a37fa19edc70bc4ec2df
         dest: molecules
         dest-filename: molecules.zip
       - type: archive
