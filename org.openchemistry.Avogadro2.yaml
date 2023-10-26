@@ -265,7 +265,7 @@ modules:
         sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
 
   - name: avogadrolibs
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     builddir: true
     subdir: avogadrolibs
     config-opts:
@@ -306,7 +306,7 @@ modules:
 
   - name: Avogadro2
     subdir: Avogadro2
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DENABLE_RPATH:BOOL=ON
       - -DENABLE_TESTING:BOOL=OFF
