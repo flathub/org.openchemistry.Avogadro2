@@ -284,13 +284,15 @@ modules:
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
       - -DENABLE_TESTING:BOOL=OFF
     sources:
-      - type: git
-        url: https://github.com/kevinsmia1939/avogadrolibs
-        commit: 2e6b2dce34b5d836532f705c28dddbf5b1ede707
+      - type: archive
+        url: https://github.com/OpenChemistry/avogadrolibs/archive/refs/tags/1.98.0.tar.gz
+        sha256: 50255a7622159c7884dca0311c7d5beb4d474fe93a2b5d662ebec4b02237166c
         dest: avogadrolibs
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
+      - type: patch
+        path: fix_python_install_dir.patch
       - type: archive
         url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
         sha256: 18177d79f484e3dc5346b76532e69690f93f2e9e93a0a37fa19edc70bc4ec2df
@@ -324,8 +326,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.97.0.tar.gz
-        sha256: c4e1a0d54e43c2ae8bbd6b872e46b2f983f45c5aaa981731c681d5325faaec63
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.0.tar.gz
+        sha256: a91e51e0255b4dd13901c8947540160f61879baecf9c23e3e9a17497b8194ebd
         dest: Avogadro2
         x-checker-data:
           type: anitya
