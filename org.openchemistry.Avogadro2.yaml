@@ -67,7 +67,6 @@ modules:
     build-commands:
       - pip3 install --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation .
-      # - cd .. && python3 -c "import numpy, sys; sys.exit(numpy.test() is False)"
     sources:
       - type: archive
         url: https://github.com/numpy/numpy/releases/download/v1.26.0/numpy-1.26.0.tar.gz
@@ -265,7 +264,7 @@ modules:
         sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
 
   - name: avogadrolibs
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     builddir: true
     subdir: avogadrolibs
     config-opts:
@@ -284,13 +283,15 @@ modules:
       - -DBUILD_STATIC_PLUGINS:BOOL=ON
       - -DENABLE_TESTING:BOOL=OFF
     sources:
-      - type: git
-        url: https://github.com/kevinsmia1939/avogadrolibs
-        commit: 2e6b2dce34b5d836532f705c28dddbf5b1ede707
+      - type: archive
+        url: https://github.com/OpenChemistry/avogadrolibs/archive/refs/tags/1.98.0.tar.gz
+        sha256: 50255a7622159c7884dca0311c7d5beb4d474fe93a2b5d662ebec4b02237166c
         dest: avogadrolibs
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
+      - type: patch
+        path: fix_python_install_dir.patch
       - type: archive
         url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
         sha256: 18177d79f484e3dc5346b76532e69690f93f2e9e93a0a37fa19edc70bc4ec2df
@@ -298,13 +299,13 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 21df4ac95670efbac14cac3a7e77ed4293af39143cd02977585bb8a0e729f247
+        sha256: 81e68adb6977646c2175413e4d5d0183db1f43f6339685609c87102232ddfb91
         dest: crystals
         dest-filename: crystals.zip
 
   - name: Avogadro2
     subdir: Avogadro2
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DENABLE_RPATH:BOOL=ON
       - -DENABLE_TESTING:BOOL=OFF
@@ -324,8 +325,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.97.0.tar.gz
-        sha256: c4e1a0d54e43c2ae8bbd6b872e46b2f983f45c5aaa981731c681d5325faaec63
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.0.tar.gz
+        sha256: a91e51e0255b4dd13901c8947540160f61879baecf9c23e3e9a17497b8194ebd
         dest: Avogadro2
         x-checker-data:
           type: anitya
@@ -335,7 +336,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: 2f578f456d73a69d48b6e6b5b8be938b75042e9003d6ea92e7b85ae9254fca35
+        sha256: f3922f74592b4e9738d470c483594c73abd26b582f17e0bfb424712d6081ca6f
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
