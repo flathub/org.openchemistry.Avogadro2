@@ -39,7 +39,7 @@ modules:
       - -DDYNAMIC_ARCH:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.24/OpenBLAS-0.3.24.tar.gz
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
         sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
         x-checker-data:
           type: anitya
@@ -63,14 +63,14 @@ modules:
   - name: python-numpy
     buildsystem: simple
     build-options:
-      ldflags: "-lgfortran"
+      ldflags: -lgfortran
     build-commands:
       - pip3 install --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation .
     sources:
       - type: archive
-        url: https://github.com/numpy/numpy/releases/download/v1.26.0/numpy-1.26.0.tar.gz
-        sha256: f93fc78fe8bf15afe2b8d6b6499f1c73953169fad1e9a8dd086cdff3190e7fdf
+        url: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz
+        sha256: c8c6c72d4a9f831f328efb1312642a1cafafaa88981d9ab76368d50d07d93cbe
         x-checker-data:
           type: pypi
           name: numpy
@@ -112,8 +112,8 @@ modules:
       - /share/hdf5_examples
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_2.tar.gz
-        sha256: 83eaee3f9d1790bb4b29368bf1a648ece763097a4122c80a81076e8fb1e890e6
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_3.tar.gz
+        sha256: df5ee33c74d5efb59738075ef96f4201588e1f1eeb233f047ac7fd1072dee1f6
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -193,8 +193,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/zeromq/libzmq/releases/download/v4.3.4/zeromq-4.3.4.tar.gz
-        sha256: c593001a89f5a85dd2ddf564805deb860e02471171b3f204944857336295c3e5
+        url: https://github.com/zeromq/libzmq/releases/download/v4.3.5/zeromq-4.3.5.tar.gz
+        sha256: 6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43
         x-checker-data:
           type: anitya
           project-id: 16245
@@ -217,8 +217,8 @@ modules:
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.1.0.tar.gz
-        sha256: 31bca273a1bc54e1cff4058eebe7c0a35d5f9b489579e84667d8e005c73dcc13
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.0.0.tar.gz
+        sha256: 426c4004e84fdb732d86aa5fcada5257ca8bc7a6915c06ced27565176c16ee96
         x-checker-data:
           type: anitya
           project-id: 14891
@@ -313,7 +313,7 @@ modules:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DEIGEN3_INCLUDE_DIR=/app/include/eigen3
     build-options:
-      ldflags: "-Wl,--copy-dt-needed-entries"
+      ldflags: -Wl,--copy-dt-needed-entries
     post-install:
       - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
       - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
