@@ -336,7 +336,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: f3922f74592b4e9738d470c483594c73abd26b582f17e0bfb424712d6081ca6f
+        sha256: c2f00158e4efbbf84f79315b448fc39327ec59daa5e67601dea0cae19975c1a1
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
