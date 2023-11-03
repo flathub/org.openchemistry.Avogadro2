@@ -284,8 +284,8 @@ modules:
       - -DENABLE_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadrolibs/archive/refs/tags/1.98.0.tar.gz
-        sha256: 50255a7622159c7884dca0311c7d5beb4d474fe93a2b5d662ebec4b02237166c
+        url: https://github.com/OpenChemistry/avogadrolibs/archive/refs/tags/1.98.1.tar.gz
+        sha256: cb1d2c83a7f2c89c46ad46fdecace0d6f4de76c0898708ad52cf1e5a0aad1fb6
         dest: avogadrolibs
         x-checker-data:
           type: git
@@ -325,8 +325,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.0.tar.gz
-        sha256: a91e51e0255b4dd13901c8947540160f61879baecf9c23e3e9a17497b8194ebd
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.1.tar.gz
+        sha256: b72653251dbf4b969117680a854d9d09b35870f556e6fa32186e63db9cff167a
         dest: Avogadro2
         x-checker-data:
           type: anitya
