@@ -290,8 +290,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
-      - type: patch
-        path: fix_python_install_dir.patch
+      # - type: patch
+      #   path: fix_python_install_dir.patch
       - type: archive
         url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
         sha256: 18177d79f484e3dc5346b76532e69690f93f2e9e93a0a37fa19edc70bc4ec2df
