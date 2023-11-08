@@ -1,11 +1,11 @@
 diff -ruN a/avogadrolibs/python/CMakeLists.txt b/avogadrolibs/python/CMakeLists.txt
---- a/avogadrolibs/python/CMakeLists.txt	2023-10-26 09:59:34.000000000 +0200
-+++ b/avogadrolibs/python/CMakeLists.txt	2023-10-27 00:07:43.788724322 +0200
+--- a/avogadrolibs/python/CMakeLists.txt	2023-11-02 19:35:59.000000000 +0100
++++ b/avogadrolibs/python/CMakeLists.txt	2023-11-08 15:08:43.081353705 +0100
 @@ -17,7 +17,7 @@
  set(_python_module_install_dir "avogadro")
  # SKBUILD is set for binary wheel
  if (NOT SKBUILD)
--  set(_python_module_install_dir "${Python_STDARCH}/avogadro")
+-  set(_python_module_install_dir "${Python_SITEARCH}/avogadro")
 +  set(_python_module_install_dir "/app/lib/avogadro")
  endif()
  
