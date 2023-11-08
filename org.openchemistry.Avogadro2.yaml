@@ -217,8 +217,8 @@ modules:
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.1.0.tar.gz
-        sha256: 31bca273a1bc54e1cff4058eebe7c0a35d5f9b489579e84667d8e005c73dcc13
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.0.0.tar.gz
+        sha256: 426c4004e84fdb732d86aa5fcada5257ca8bc7a6915c06ced27565176c16ee96
         x-checker-data:
           type: anitya
           project-id: 14891
