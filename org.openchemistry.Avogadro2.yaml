@@ -39,8 +39,8 @@ modules:
       - -DDYNAMIC_ARCH:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
-        sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.25.tar.gz
+        sha256: 4c25cb30c4bb23eddca05d7d0a85997b8db6144f5464ba7f8c09ce91e2f35543
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -69,8 +69,8 @@ modules:
         --no-build-isolation .
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz
-        sha256: c8c6c72d4a9f831f328efb1312642a1cafafaa88981d9ab76368d50d07d93cbe
+        url: https://files.pythonhosted.org/packages/dd/2b/205ddff2314d4eea852e31d53b8e55eb3f32b292efc3dd86bd827ab9019d/numpy-1.26.2.tar.gz
+        sha256: f65738447676ab5777f11e6bbbdb8ce11b785e105f690bc45966574816b6d3ea
         x-checker-data:
           type: pypi
           name: numpy
@@ -217,8 +217,8 @@ modules:
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.1.0.tar.gz
-        sha256: 31bca273a1bc54e1cff4058eebe7c0a35d5f9b489579e84667d8e005c73dcc13
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.0.0.tar.gz
+        sha256: 426c4004e84fdb732d86aa5fcada5257ca8bc7a6915c06ced27565176c16ee96
         x-checker-data:
           type: anitya
           project-id: 14891
