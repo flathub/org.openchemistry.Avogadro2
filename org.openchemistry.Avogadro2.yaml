@@ -69,8 +69,8 @@ modules:
         --no-build-isolation .
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz
-        sha256: c8c6c72d4a9f831f328efb1312642a1cafafaa88981d9ab76368d50d07d93cbe
+        url: https://files.pythonhosted.org/packages/65/6e/09db70a523a96d25e115e71cc56a6f9031e7b8cd166c1ac8438307c14058/numpy-1.26.4.tar.gz
+        sha256: 2a02aba9ed12e4ac4eb3ea9421c420301a0c6460d9830d74a9df87efa4912010
         x-checker-data:
           type: pypi
           name: numpy
@@ -217,8 +217,8 @@ modules:
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.1.0.tar.gz
-        sha256: 31bca273a1bc54e1cff4058eebe7c0a35d5f9b489579e84667d8e005c73dcc13
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.3.1.tar.gz
+        sha256: c295dbea7d2fc9e50639aa14331fef277878c35f00ef0766e688bfbb7b17d44c
         x-checker-data:
           type: anitya
           project-id: 14891
@@ -326,8 +326,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.1.tar.gz
-        sha256: b72653251dbf4b969117680a854d9d09b35870f556e6fa32186e63db9cff167a
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.99.0.tar.gz
+        sha256: 4713faa4e755433947924a381fd1631dfe46a9f27065765cfa04c120ed603189
         dest: Avogadro2
         x-checker-data:
           type: anitya
