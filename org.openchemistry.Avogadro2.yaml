@@ -1,7 +1,7 @@
 app-id: org.openchemistry.Avogadro2
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: 5.15-22.08
+runtime-version: 5.15-23.08
 command: avogadro2
 rename-desktop-file: avogadro2.desktop
 finish-args:
@@ -212,8 +212,8 @@ modules:
       - -DSPGLIB_SHARED_LIBS=ON
       - -DSPGLIB_INSTALL=ON
       - -DSPGLIB_TEST_COVERAGE=OFF
-      - -DPython3_NumPy_INCLUDE_DIR=/app/lib/python3.10/site-packages/numpy/core/include
-      - -DPython_INSTALL_DIR=/app/lib/python3.10/site-packages/spglib
+      - -DPython3_NumPy_INCLUDE_DIR=/app/lib/python3.11/site-packages/numpy/core/include
+      - -DPython_INSTALL_DIR=/app/lib/python3.11/site-packages/spglib
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
@@ -260,8 +260,8 @@ modules:
       - -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=OFF
     sources:
       - type: archive
-        url: https://www.vtk.org/files/release/9.2/VTK-9.2.0.rc1.tar.gz
-        sha256: 3d219ae624d0ce6d72bb9bdbf5895d0eaa875ff3115a61d3c300b257ea7c0f7e
+        url: https://www.vtk.org/files/release/9.3/VTK-9.3.0.tar.gz
+        sha256: fdc7b9295225b34e4fdddc49cd06e66e94260cb00efee456e0f66568c9681be9
 
   - name: avogadrolibs
     buildsystem: cmake-ninja
@@ -300,7 +300,7 @@ modules:
         dest-filename: molecules.zip
       - type: archive
         url: https://github.com/OpenChemistry/crystals/archive/refs/heads/master.zip
-        sha256: 81e68adb6977646c2175413e4d5d0183db1f43f6339685609c87102232ddfb91
+        sha256: fb662b30b3454e68e87002ac59797fc9264b21a65dda78690f627ab02701bf51
         dest: crystals
         dest-filename: crystals.zip
 
@@ -337,7 +337,7 @@ modules:
       - type: archive
         url: https://github.com/OpenChemistry/avogadro-i18n/archive/refs/heads/master.zip
         dest: avogadro-i18n
-        sha256: efdb17a3af206d7680a91af4390c9d376938a2b0d7d8db5fc5c383e90e0df714
+        sha256: 1cf4b0221abd7e5c33ed8f05066db4424bc3501dccf7d50173623451213f8d36
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
         dest: Avogadro2
