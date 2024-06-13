@@ -285,8 +285,8 @@ modules:
       # - -DPython_SITEARCH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadrolibs/archive/refs/tags/1.98.1.tar.gz
-        sha256: cb1d2c83a7f2c89c46ad46fdecace0d6f4de76c0898708ad52cf1e5a0aad1fb6
+        url: https://github.com/OpenChemistry/avogadrolibs/archive/refs/tags/1.99.0.tar.gz
+        sha256: 34808e3c602b0f60f3c160ff0220832aee777db86e962e3f958c6327fb434063
         dest: avogadrolibs
         x-checker-data:
           type: git
@@ -326,8 +326,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.1.tar.gz
-        sha256: b72653251dbf4b969117680a854d9d09b35870f556e6fa32186e63db9cff167a
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.99.0.tar.gz
+        sha256: 4713faa4e755433947924a381fd1631dfe46a9f27065765cfa04c120ed603189
         dest: Avogadro2
         x-checker-data:
           type: anitya
