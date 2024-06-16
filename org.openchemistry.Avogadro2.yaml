@@ -39,8 +39,8 @@ modules:
       - -DDYNAMIC_ARCH:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
-        sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.27.tar.gz
+        sha256: aa2d68b1564fe2b13bc292672608e9cdeeeb6dc34995512e65c3b10f4599e897
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -50,16 +50,19 @@ modules:
     buildsystem: simple
     build-commands:
       - python3 setup.py build
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/
+      - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.2.0
-        commit: abe01ae3d61f12852184746491814644a7cd9cf0
+        tag: 1.4.0
+        commit: eaefe29463a61a311a6b1de6cd539f39500399ff
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
 
   # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup -o python_deps && fb
-
   - python_deps.json
+
   - name: python-numpy
     buildsystem: simple
     build-options:
@@ -69,8 +72,8 @@ modules:
         --no-build-isolation .
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz
-        sha256: c8c6c72d4a9f831f328efb1312642a1cafafaa88981d9ab76368d50d07d93cbe
+        url: https://files.pythonhosted.org/packages/65/6e/09db70a523a96d25e115e71cc56a6f9031e7b8cd166c1ac8438307c14058/numpy-1.26.4.tar.gz
+        sha256: 2a02aba9ed12e4ac4eb3ea9421c420301a0c6460d9830d74a9df87efa4912010
         x-checker-data:
           type: pypi
           name: numpy
@@ -86,6 +89,11 @@ modules:
       - type: archive
         url: https://github.com/pybind/pybind11/archive/v2.11.1.tar.gz
         sha256: d475978da0cdc2d43b73f30910786759d593a9d8ee05b1b6846d1eb16c6d2e0c
+        x-checker-data:
+          type: anitya
+          project-id: 13384
+          stable-only: true
+          url-template: https://github.com/pybind/pybind11/archive/v$version.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -217,8 +225,8 @@ modules:
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.1.0.tar.gz
-        sha256: 31bca273a1bc54e1cff4058eebe7c0a35d5f9b489579e84667d8e005c73dcc13
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.4.0.tar.gz
+        sha256: e33694b189c6864f719a59c31e2af55301a524fb68ba9fb65f08e95af471847d
         x-checker-data:
           type: anitya
           project-id: 14891
