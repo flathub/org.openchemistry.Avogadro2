@@ -39,8 +39,8 @@ modules:
       - -DDYNAMIC_ARCH:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
-        sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.27.tar.gz
+        sha256: aa2d68b1564fe2b13bc292672608e9cdeeeb6dc34995512e65c3b10f4599e897
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -69,8 +69,8 @@ modules:
         --no-build-isolation .
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz
-        sha256: c8c6c72d4a9f831f328efb1312642a1cafafaa88981d9ab76368d50d07d93cbe
+        url: https://files.pythonhosted.org/packages/05/35/fb1ada118002df3fe91b5c3b28bc0d90f879b881a5d8f68b1f9b79c44bfe/numpy-2.0.0.tar.gz
+        sha256: cf5d1c9e6837f8af9f92b6bd3e86d513cdc11f60fd62185cc49ec7d1aba34864
         x-checker-data:
           type: pypi
           name: numpy
@@ -217,8 +217,8 @@ modules:
       - -DCMAKE_INSTALL_RPATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/spglib/spglib/archive/refs/tags/v2.1.0.tar.gz
-        sha256: 31bca273a1bc54e1cff4058eebe7c0a35d5f9b489579e84667d8e005c73dcc13
+        url: https://github.com/spglib/spglib/archive/refs/tags/v2.4.0.tar.gz
+        sha256: e33694b189c6864f719a59c31e2af55301a524fb68ba9fb65f08e95af471847d
         x-checker-data:
           type: anitya
           project-id: 14891
@@ -326,8 +326,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.98.1.tar.gz
-        sha256: b72653251dbf4b969117680a854d9d09b35870f556e6fa32186e63db9cff167a
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.99.0.tar.gz
+        sha256: 4713faa4e755433947924a381fd1631dfe46a9f27065765cfa04c120ed603189
         dest: Avogadro2
         x-checker-data:
           type: anitya
