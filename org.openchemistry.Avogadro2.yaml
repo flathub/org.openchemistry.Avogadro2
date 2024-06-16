@@ -60,7 +60,7 @@ modules:
           type: git
           tag-pattern: ^([\d.]+)$
 
-  # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup -o python_deps && fb
+  # python3 flatpak-pip-generator tomli packaging pyproject_metadata exceptiongroup meson-python -o python_deps && fb
   - python_deps.json
 
   - name: python-numpy
@@ -311,6 +311,11 @@ modules:
         sha256: fb662b30b3454e68e87002ac59797fc9264b21a65dda78690f627ab02701bf51
         dest: crystals
         dest-filename: crystals.zip
+      - type: archive
+        url: https://github.com/OpenChemistry/molecules/archive/refs/heads/master.zip
+        sha256: 18177d79f484e3dc5346b76532e69690f93f2e9e93a0a37fa19edc70bc4ec2df
+        dest: fragments
+        dest-filename: fragments.zip
 
   - name: Avogadro2
     subdir: Avogadro2
