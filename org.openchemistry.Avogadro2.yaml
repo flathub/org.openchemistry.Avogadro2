@@ -299,6 +299,9 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
+        # Fix upstream https://github.com/OpenChemistry/avogadrolibs/pull/1612
+      - type: patch
+        path: fix_fragments.patch
       - type: patch
         path: fix_python_install_dir.patch
       - type: archive

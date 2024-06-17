@@ -1,0 +1,16 @@
+diff -ruN a/avogadrolibs/avogadro/qtplugins/templatetool/CMakeLists.txt b/avogadrolibs/avogadro/qtplugins/templatetool/CMakeLists.txt
+--- a/avogadrolibs/avogadro/qtplugins/templatetool/CMakeLists.txt	2024-02-10 15:49:49.000000000 +0100
++++ b/avogadrolibs/avogadro/qtplugins/templatetool/CMakeLists.txt	2024-06-17 02:06:50.603587999 +0200
+@@ -24,10 +24,11 @@
+ )
+ 
+ # Install the fragments
+-set(_molecules "${AvogadroLibs_SOURCE_DIR}/../fragments")
++set(_fragments "${AvogadroLibs_SOURCE_DIR}/../fragments")
+ 
+ # Look in parallel directory for the molecule fragment repository
+ if(NOT EXISTS "${_fragments}")
++
+ # download molecules...
+ ExternalProject_Add(fragments
+     GIT_REPOSITORY https://github.com/openchemistry/fragments
