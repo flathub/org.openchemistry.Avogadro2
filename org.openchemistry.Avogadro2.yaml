@@ -54,8 +54,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.4.0
-        commit: eaefe29463a61a311a6b1de6cd539f39500399ff
+        tag: 1.4.1
+        commit: 1e2e30bbcfea876e05ce5b863579dc7eb71b5fb3
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -72,8 +72,8 @@ modules:
         --no-build-isolation .
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/65/6e/09db70a523a96d25e115e71cc56a6f9031e7b8cd166c1ac8438307c14058/numpy-1.26.4.tar.gz
-        sha256: 2a02aba9ed12e4ac4eb3ea9421c420301a0c6460d9830d74a9df87efa4912010
+        url: https://files.pythonhosted.org/packages/05/35/fb1ada118002df3fe91b5c3b28bc0d90f879b881a5d8f68b1f9b79c44bfe/numpy-2.0.0.tar.gz
+        sha256: cf5d1c9e6837f8af9f92b6bd3e86d513cdc11f60fd62185cc49ec7d1aba34864
         x-checker-data:
           type: pypi
           name: numpy
@@ -87,8 +87,8 @@ modules:
       - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.10
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.11.1.tar.gz
-        sha256: d475978da0cdc2d43b73f30910786759d593a9d8ee05b1b6846d1eb16c6d2e0c
+        url: https://github.com/pybind/pybind11/archive/v2.13.1.tar.gz
+        sha256: 51631e88960a8856f9c497027f55c9f2f9115cafb08c0005439838a05ba17bfc
         x-checker-data:
           type: anitya
           project-id: 13384
