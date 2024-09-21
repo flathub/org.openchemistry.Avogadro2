@@ -54,8 +54,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.5.1
-        commit: b6b634ad33e5ca9ad4a9d6139dba4244847cc0e8
+        tag: 1.5.2
+        commit: 187ef425f96b9ba091edce56e9491373c51b2a34
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -88,8 +88,8 @@ modules:
       - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.11
     sources:
       - type: archive
-        url: https://github.com/pybind/pybind11/archive/v2.13.4.tar.gz
-        sha256: efc901aa0aab439a3fea6efeaf930b5a349fb06394bf845c64ce15a9cf8f0240
+        url: https://github.com/pybind/pybind11/archive/v2.13.6.tar.gz
+        sha256: e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20
         x-checker-data:
           type: anitya
           project-id: 13384
