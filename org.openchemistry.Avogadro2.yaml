@@ -1,4 +1,6 @@
 app-id: org.openchemistry.Avogadro2
+default-branch: master
+branch: nightly
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: "6.7"
@@ -38,7 +40,8 @@ modules:
 
   - name: avogadro2
     buildsystem: cmake-ninja
-    builddir: true
+    builddir: true  # Build outside of source tree, just like other builds
+    no-make-install: true  # Superbuild doesn't have `install` command defined
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
       - -DCMAKE_BUILD_TYPEG=Release  # As of writing does nothing on Linux but still
@@ -164,12 +167,19 @@ modules:
       - type: file
         path: org.openchemistry.Avogadro2.desktop
 
-    #post-install:
-    #  - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
-    #  - install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
-    #  - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-    #  - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
-    #  - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-    ## Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
-    ## - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-    #  - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+    post-install:
+      # Manually copy all the generated binaries from prefix dir
+      - install -Dm755 prefix/bin/* -t ${FLATPAK_DEST}/bin/
+      # And libs
+      - install -Dm755 prefix/lib/* -t ${FLATPAK_DEST}/lib/
+      - install -Dm755 prefix/lib64/* -t ${FLATPAK_DEST}/lib64/
+      # And other stuff
+      - install -Dm755 prefix/share/* -t ${FLATPAK_DEST}/share/
+      #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      #- install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      #- desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      ## Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
+      #- desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+      #- install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
