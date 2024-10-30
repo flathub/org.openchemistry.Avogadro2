@@ -3,8 +3,21 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: "6.7"
 command: avogadro2
-rename-desktop-file: org.openchemistry.Avogadro2.desktop
 appdata-license: BSD-3-Clause AND GPL-2.0-only
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11  # To support X11
+  - --share=ipc  # Bad performance on X11 without
+  - --device=dri  # OpenGL rendering
+  - --share=network  # For plugin downloads
+  #- --filesystem=home  # Not needed, use XDG portal via Qt instead
+cleanup:
+  - /include
+  #- /lib/cmake
+  #- /share/doc
+  - '*.la'
+  - '*.a'
+
 modules:
   # Should be able to use this with-DUSE_SYSTEM_GLEW=ON flag to Avo but doesn't work?
   #- shared-modules/glew/glew.json
@@ -144,6 +157,12 @@ modules:
         url: https://github.com/mcodev31/libmsym/archive/refs/tags/v0.2.3-paper.tar.gz
         sha256: 3741ebe163cf40696570d6b62e4834ca587d43dcac9de713994cc5e2960fb8fd
         dest: Downloads
+      
+      # Metainfo and .desktop files
+      - type: file
+        path: org.openchemistry.Avogadro2.metainfo.xml
+      - type: file
+        path: org.openchemistry.Avogadro2.desktop
 
     #post-install:
     #  - install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
@@ -151,6 +170,6 @@ modules:
     #  - install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
     #  - install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
     #  - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-    # Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
-    # - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
+    ## Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
+    ## - desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
     #  - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
