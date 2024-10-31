@@ -4,7 +4,6 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: "6.7"
 command: avogadro2
-rename-desktop-file: org.openchemistry.Avogadro2.desktop
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
   - --socket=wayland
@@ -162,14 +161,15 @@ modules:
         dest: Downloads
       
       # Metainfo and .desktop files
-      - type: file
-        path: org.openchemistry.Avogadro2.metainfo.xml
+      #- type: file
+      #  path: org.openchemistry.Avogadro2.metainfo.xml
       #- type: file
       #  path: org.openchemistry.Avogadro2.desktop
 
     post-install:
-      # Manually copy prefix dir over into main build dir
-      - install -Dm755 prefix/* -t ${FLATPAK_DEST}/
+      # Manually copy contents of prefix dir over into main build dir
+      # -a option is recursive should preserve permissions and symlinks
+      - cp -a prefix/* -t ${FLATPAK_DEST}/
 
       #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
       #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
