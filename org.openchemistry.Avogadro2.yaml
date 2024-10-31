@@ -57,7 +57,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        branch: master
+        commit: 6608827133221657cc9af66c61a63c414920d004
         disable-shallow-clone: true
         disable-submodules: true
       ## Alternatively, use simple archive
@@ -69,42 +69,42 @@ modules:
       # avogadro-i8n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        branch: master
+        commit: 13e2a9f3bfa8d7c6760dba4e327a7cf9c168faaf
         dest: avogadro-i8n
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        branch: master
+        commit: 13e2a9f3bfa8d7c6760dba4e327a7cf9c168faaf
         dest: avogadroapp
       # avogadrodata
       - type: git
         url: https://github.com/OpenChemistry/avogadrodata.git
-        branch: master
+        commit: 91d966abeb1016b0fe469f2c814e7ddb1f546771
         dest: avogadrodata
       # avogadrogenerators
       - type: git
         url: https://github.com/OpenChemistry/avogenerators.git
-        branch: master
+        commit: f4e3bd7f63664a6844e732e89598bfed48b2c47e
         dest: avogadrogenerators
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        branch: master
+        commit: ae1a5ef74e3002191dbfb61191ac8e6abfe152da
         dest: avogadrolibs
       # crystals
       - type: git
         url: https://github.com/OpenChemistry/crystals.git
-        branch: master
+        commit: 28404bd4cceae4c7a688f78b50a59ea819186ccd
         dest: crystals
       # fragments
       - type: git
         url: https://github.com/OpenChemistry/fragments.git
-        branch: main
+        commit: 3c54a8adfcc5210ed454575f0566d758b5004d63
         dest: fragments
       # molecules
       - type: git
         url: https://github.com/OpenChemistry/molecules.git
-        branch: master
+        commit: ecfb0c27ce02550ff6014a35fbe6a4483032403d
         dest: molecules
 
       # Now fetch third-party stuff where the source is expected in `openchemistry/thirdparty`
@@ -159,23 +159,8 @@ modules:
         url: https://github.com/mcodev31/libmsym/archive/refs/tags/v0.2.3-paper.tar.gz
         sha256: 3741ebe163cf40696570d6b62e4834ca587d43dcac9de713994cc5e2960fb8fd
         dest: Downloads
-      
-      # Metainfo and .desktop files
-      #- type: file
-      #  path: org.openchemistry.Avogadro2.metainfo.xml
-      #- type: file
-      #  path: org.openchemistry.Avogadro2.desktop
 
     post-install:
       # Manually copy contents of prefix dir over into main build dir
       # -a option is recursive should preserve permissions and symlinks
       - cp -a prefix/* -t ${FLATPAK_DEST}/
-
-      #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
-      #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
-      #- install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-      #- install -Dm644 avogadro/icons/avogadro2_512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
-      #- desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      ## Remove Education category fix Avogadro2 not appearing in menu entry, no clue why.
-      #- desktop-file-edit --remove-category=Education ${FLATPAK_DEST}/share/applications/avogadro2.desktop
-      #- install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
