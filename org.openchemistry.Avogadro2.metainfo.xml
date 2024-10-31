@@ -6,6 +6,10 @@
     <summary>Free and open source molecular editor</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>BSD-3-Clause</project_license>
+    <categories>
+    <category>Education</category>
+    <category>Chemistry</category>
+    </categories>
     <description>
         <p>
             Avogadro is an advanced molecular editor designed for cross-platform use in computational chemistry,
@@ -24,8 +28,11 @@
         </ul>
     </description>
     <url type="homepage">https://two.avogadro.cc/</url>
-    <url type="help">https://discuss.avogadro.cc/</url>
-    <url type="bugtracker">https://github.com/OpenChemistry/avogadroapp/issues</url>
+    <url type="help">https://two.avogadro.cc/docs</url>
+    <url type="faq">https://discuss.avogadro.cc/</url>
+    <url type="bugtracker">https://github.com/OpenChemistry/avogadrolibs/issues</url>
+    <url type="translate">https://hosted.weblate.org/engage/avogadro/</url>
+    <url type="donation">https://opencollective.com/open-chemistry</url>
     <developer_name>Open Chemistry team</developer_name>
     <screenshots>
         <screenshot type="default">
