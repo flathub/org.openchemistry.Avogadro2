@@ -5,6 +5,7 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: "6.7"
 command: avogadro2
+rename-desktop-file: org.openchemistry.Avogadro2.desktop
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
   - --socket=wayland
@@ -15,7 +16,7 @@ finish-args:
   #- --filesystem=home  # Not needed, use XDG portal via Qt instead
 cleanup:
   - /include
-  #- /lib/cmake
+  - /lib/cmake
   #- /share/doc
   - '*.la'
   - '*.a'
@@ -164,17 +165,13 @@ modules:
       # Metainfo and .desktop files
       - type: file
         path: org.openchemistry.Avogadro2.metainfo.xml
-      - type: file
-        path: org.openchemistry.Avogadro2.desktop
+      #- type: file
+      #  path: org.openchemistry.Avogadro2.desktop
 
     post-install:
-      # Manually copy all the generated binaries from prefix dir
-      - install -Dm755 prefix/bin/* -t ${FLATPAK_DEST}/bin/
-      # And libs
-      - install -Dm755 prefix/lib/* -t ${FLATPAK_DEST}/lib/
-      - install -Dm755 prefix/lib64/* -t ${FLATPAK_DEST}/lib64/
-      # And other stuff
-      - install -Dm755 prefix/share/* -t ${FLATPAK_DEST}/share/
+      # Manually copy prefix dir over into main build dir
+      - install -Dm755 prefix/* -t ${FLATPAK_DEST}/
+
       #- install -Dm644 avogadro/icons/avogadro2_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.png
       #- install -Dm644 avogadro/icons/avogadro2_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
       #- install -Dm644 avogadro/icons/avogadro2_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
