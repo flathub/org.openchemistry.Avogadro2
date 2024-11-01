@@ -57,7 +57,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 6608827133221657cc9af66c61a63c414920d004
+        commit: d31cbd9ea0c0c11a12303455317cf0bc2d215044
         disable-shallow-clone: true
         disable-submodules: true
       ## Alternatively, use simple archive
@@ -74,7 +74,7 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 13e2a9f3bfa8d7c6760dba4e327a7cf9c168faaf
+        commit: 380d860eee6f3b2b2f23e15ebe6a0a600d784d8a
         dest: avogadroapp
       # avogadrodata
       - type: git
