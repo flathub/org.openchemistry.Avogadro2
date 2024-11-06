@@ -11,17 +11,13 @@ finish-args:
   - --share=ipc  # Bad performance on X11 without
   - --device=dri  # OpenGL rendering
   - --share=network  # For plugin downloads
-  #- --filesystem=home  # Not needed, use XDG portal via Qt instead
 cleanup:
   - /include
   - /lib/cmake
-  #- /share/doc
   - '*.la'
   - '*.a'
 
 modules:
-  # Should be able to use this with-DUSE_SYSTEM_GLEW=ON flag to Avo but doesn't work?
-  #- shared-modules/glew/glew.json
   # Needed to compile glew apparently
   - shared-modules/glu/glu-9.json
 
@@ -43,8 +39,7 @@ modules:
     no-make-install: true  # Superbuild doesn't have `install` command defined
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
-      - -DCMAKE_BUILD_TYPEG=Release  # As of writing does nothing on Linux but still
-      #- -DUSE_SYSTEM_GLEW=ON
+      - -DCMAKE_BUILD_TYPE=Release
       - -DUSE_VTK=ON
       - -DBUILD_GPL_PLUGINS=ON
       - -DBUILD_MOLEQUEUE=OFF
