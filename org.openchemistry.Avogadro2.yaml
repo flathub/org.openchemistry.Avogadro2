@@ -39,14 +39,12 @@ modules:
     no-make-install: true  # Superbuild doesn't have `install` command defined
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
-      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_BUILD_TYPE=Debug
       - -DUSE_VTK=ON
       - -DBUILD_GPL_PLUGINS=ON
       - -DBUILD_MOLEQUEUE=OFF
       - -DQT_VERSION=6
       - -DDOWNLOAD_TO_SOURCE_DIR=ON
-    build-options:
-      ldflags: -Wl,--copy-dt-needed-entries
     sources:
       # First get the umbrella repo so we can use superbuild strategy
       # Clone but not recursively, only want CMake files and dir structure
