@@ -11,17 +11,13 @@ finish-args:
   - --share=ipc  # Bad performance on X11 without
   - --device=dri  # OpenGL rendering
   - --share=network  # For plugin downloads
-  #- --filesystem=home  # Not needed, use XDG portal via Qt instead
 cleanup:
   - /include
   - /lib/cmake
-  #- /share/doc
   - '*.la'
   - '*.a'
 
 modules:
-  # Should be able to use this with-DUSE_SYSTEM_GLEW=ON flag to Avo but doesn't work?
-  #- shared-modules/glew/glew.json
   # Needed to compile glew apparently
   - shared-modules/glu/glu-9.json
 
@@ -43,15 +39,12 @@ modules:
     no-make-install: true  # Superbuild doesn't have `install` command defined
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
-      - -DCMAKE_BUILD_TYPEG=Release  # As of writing does nothing on Linux but still
-      #- -DUSE_SYSTEM_GLEW=ON
+      - -DCMAKE_BUILD_TYPE=Release
       - -DUSE_VTK=ON
       - -DBUILD_GPL_PLUGINS=ON
       - -DBUILD_MOLEQUEUE=OFF
       - -DQT_VERSION=6
       - -DDOWNLOAD_TO_SOURCE_DIR=ON
-    build-options:
-      ldflags: -Wl,--copy-dt-needed-entries
     sources:
       # First get the umbrella repo so we can use superbuild strategy
       # Clone but not recursively, only want CMake files and dir structure
@@ -60,10 +53,6 @@ modules:
         commit: d31cbd9ea0c0c11a12303455317cf0bc2d215044
         disable-shallow-clone: true
         disable-submodules: true
-      ## Alternatively, use simple archive
-      #- type: archive
-      #  url: https://github.com/matterhorn103/openchemistry/archive/refs/heads/flatpak.zip
-      #  sha256: d553a4b94ee92fe8909f7ea948cdaaf1a106a7df56e1bf0c71c81909013505c2
 
       # Do the equivalent of checking out each in-house module
       # avogadro-i8n
