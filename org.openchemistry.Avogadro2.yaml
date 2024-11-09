@@ -55,11 +55,11 @@ modules:
         disable-submodules: true
 
       # Do the equivalent of checking out each in-house module
-      # avogadro-i8n
+      # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
         commit: 07bee855ee8f34b64caf804e69cc4c0b34112ca3
-        dest: avogadro-i8n
+        dest: avogadro-i18n
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
@@ -78,7 +78,7 @@ modules:
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 460ee5bed522864ef49e6ccf15d662f0e6a39aa2
+        commit: a4831c07675749fa5269ccbcfe6d20ddb37f48b3
         dest: avogadrolibs
       # crystals
       - type: git
