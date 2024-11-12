@@ -78,7 +78,7 @@ modules:
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: a4831c07675749fa5269ccbcfe6d20ddb37f48b3
+        commit: 91489fe119d23a846b3d987dad29249c4fb7110a
         dest: avogadrolibs
       # crystals
       - type: git
