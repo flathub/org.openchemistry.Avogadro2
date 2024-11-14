@@ -2,7 +2,7 @@ app-id: org.openchemistry.Avogadro2
 default-branch: beta
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: "6.8"
+runtime-version: "6.7"
 command: avogadro2
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
