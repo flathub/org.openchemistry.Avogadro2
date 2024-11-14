@@ -25,6 +25,10 @@ modules:
   - name: rapidjson
     buildsystem: cmake-ninja
     builddir: true
+    config-opts:
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
     sources:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
@@ -50,36 +54,31 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: d31cbd9ea0c0c11a12303455317cf0bc2d215044
+        commit: 0bd11984cdb6d8ecb13c255b7557dd8b3f0ef20d
         disable-shallow-clone: true
         disable-submodules: true
 
       # Do the equivalent of checking out each in-house module
+      # avogadroapp
+      - type: git
+        url: https://github.com/OpenChemistry/avogadroapp.git
+        commit: 09dccfd849b08688ba9f131dfef553c291226948
+        dest: avogadroapp
+      # avogadrolibs
+      - type: git
+        url: https://github.com/OpenChemistry/avogadrolibs.git
+        commit: 13450ae08d542f1bdb6e1e4e185abd6489d96135
+        dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
         commit: 07bee855ee8f34b64caf804e69cc4c0b34112ca3
         dest: avogadro-i18n
-      # avogadroapp
-      - type: git
-        url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: a3504ea2f7675f37ba3b4eb83329195ba5b3ecc5
-        dest: avogadroapp
-      # avogadrodata
-      - type: git
-        url: https://github.com/OpenChemistry/avogadrodata.git
-        commit: 91d966abeb1016b0fe469f2c814e7ddb1f546771
-        dest: avogadrodata
       # avogadrogenerators
       - type: git
         url: https://github.com/OpenChemistry/avogenerators.git
         commit: f4e3bd7f63664a6844e732e89598bfed48b2c47e
         dest: avogadrogenerators
-      # avogadrolibs
-      - type: git
-        url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 91489fe119d23a846b3d987dad29249c4fb7110a
-        dest: avogadrolibs
       # crystals
       - type: git
         url: https://github.com/OpenChemistry/crystals.git
@@ -125,13 +124,13 @@ modules:
         dest: Downloads
       # spglib
       - type: file
-        url: https://github.com/spglib/spglib/archive/v2.3.1.tar.gz
-        sha256: c295dbea7d2fc9e50639aa14331fef277878c35f00ef0766e688bfbb7b17d44c
+        url: https://github.com/spglib/spglib/archive/v2.5.0.tar.gz
+        sha256: b6026f5e85106c0c9ee57e54b9399890d0f29982e20e96ede0428b3efbe6b914
         dest: Downloads
       # libarchive
       - type: file
-        url: https://github.com/libarchive/libarchive/archive/v3.6.2.tar.gz
-        sha256: 652b84588488c2ff38db8f666cd7f781163f85bff4449dcb2e16d3c734f96697
+        url: https://github.com/libarchive/libarchive/archive/v3.7.7.tar.gz
+        sha256: fa62384995e8aa4f5a901c184fb5c91e56a29e24c05b6881a7f8fd5bbea694d2
         dest: Downloads
       # msgpackc
       - type: file
