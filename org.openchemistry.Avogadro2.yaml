@@ -14,6 +14,7 @@ finish-args:
 cleanup:
   - /include
   - /lib/cmake
+  - /lib64/cmake
   - '*.la'
   - '*.a'
 
@@ -41,6 +42,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true  # Build outside of source tree, just like other builds
     no-make-install: true  # Superbuild doesn't have `install` command defined
+    append-ld-library-path: /app/lib64
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
       - -DCMAKE_BUILD_TYPE=Release
