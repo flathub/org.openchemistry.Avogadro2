@@ -12,7 +12,6 @@ finish-args:
   - --device=dri  # OpenGL rendering
   - --share=network  # For plugin downloads
 cleanup:
-  - /include
   - /lib/cmake
   - '*.la'
   - '*.a'
@@ -152,7 +151,7 @@ modules:
       # Manually copy contents of prefix dir over into main build dir
       # -a option is recursive, should preserve permissions and symlinks
       - cp -a prefix/bin -t ${FLATPAK_DEST}/
-      - cp -a prefix/include -t ${FLATPAK_DEST}/
       - cp -a prefix/lib -t ${FLATPAK_DEST}/
       - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/  # Merge with lib
+      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64  # Add a symlink so plugins get found
       - cp -a prefix/share -t ${FLATPAK_DEST}/
