@@ -14,7 +14,6 @@ finish-args:
 cleanup:
   - /include
   - /lib/cmake
-  - /lib64/cmake
   - '*.la'
   - '*.a'
 
@@ -42,7 +41,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true  # Build outside of source tree, just like other builds
     no-make-install: true  # Superbuild doesn't have `install` command defined
-    append-ld-library-path: /app/lib64
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
       - -DCMAKE_BUILD_TYPE=Release
@@ -152,5 +150,9 @@ modules:
 
     post-install:
       # Manually copy contents of prefix dir over into main build dir
-      # -a option is recursive should preserve permissions and symlinks
-      - cp -a prefix/* -t ${FLATPAK_DEST}/
+      # -a option is recursive, should preserve permissions and symlinks
+      - cp -a prefix/bin/* -t ${FLATPAK_DEST}/bin/
+      - cp -a prefix/include/* -t ${FLATPAK_DEST}/include/
+      - cp -a prefix/lib/* -t ${FLATPAK_DEST}/lib/
+      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/
+      - cp -a prefix/share/* -t ${FLATPAK_DEST}/share/
