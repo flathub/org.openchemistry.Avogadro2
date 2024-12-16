@@ -54,8 +54,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.6.0
-        commit: 4c6c89ca7afa6244ba888ce08936acb470e126aa
+        tag: 1.6.1
+        commit: 98a2951c9bea3094a1b541530b68286fc0119173
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
