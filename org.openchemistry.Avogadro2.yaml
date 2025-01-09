@@ -81,12 +81,12 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 5d8a673b71c74c17d1560aefe569ada910fd3011
+        commit: 1e548d52276348233e1539bc93a788d53c3c6fd2
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 8a57117e94ece2f24f2a5b1af8a7cccc044cdcb1
+        commit: 86950e49d758aee9eda36df6e5635ce401388f63
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
@@ -106,12 +106,12 @@ modules:
       # fragments
       - type: git
         url: https://github.com/OpenChemistry/fragments.git
-        commit: 3c54a8adfcc5210ed454575f0566d758b5004d63
+        commit: c4943b58a488061615e3daf1f183acb01591e890
         dest: fragments
       # molecules
       - type: git
         url: https://github.com/OpenChemistry/molecules.git
-        commit: ecfb0c27ce02550ff6014a35fbe6a4483032403d
+        commit: 8a37883ef47375247be5bbb41b538c85e131bc12
         dest: molecules
 
       # Now fetch third-party stuff where the source is expected in `openchemistry/thirdparty`
