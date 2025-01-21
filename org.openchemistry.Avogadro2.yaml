@@ -39,8 +39,8 @@ modules:
       - -DDYNAMIC_ARCH:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.28.tar.gz
-        sha256: f1003466ad074e9b0c8d421a204121100b0751c96fc6fcf3d1456bd12f8a00a1
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.29.tar.gz
+        sha256: 38240eee1b29e2bde47ebb5d61160207dc68668a54cac62c076bb5032013b1eb
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -54,8 +54,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.6.0
-        commit: 4c6c89ca7afa6244ba888ce08936acb470e126aa
+        tag: 1.6.1
+        commit: 98a2951c9bea3094a1b541530b68286fc0119173
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -344,8 +344,8 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.99.0.tar.gz
-        sha256: 4713faa4e755433947924a381fd1631dfe46a9f27065765cfa04c120ed603189
+        url: https://github.com/OpenChemistry/avogadroapp/archive/refs/tags/1.100.0.tar.gz
+        sha256: 8d73f5d24883ebe1a6ca54e13cf70aaf8125174190aa028e1e0ef48b95bd6b0b
         dest: Avogadro2
         x-checker-data:
           type: anitya
