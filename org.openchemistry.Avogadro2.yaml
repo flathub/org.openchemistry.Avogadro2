@@ -73,7 +73,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 0bd11984cdb6d8ecb13c255b7557dd8b3f0ef20d
+        commit: 4d71cf2b1e42da274ed9aab6cecd2061780d3057
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -81,12 +81,12 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 1e548d52276348233e1539bc93a788d53c3c6fd2
+        commit: 2addc17d59a9e1cc990c60d2714aaa8b9df6709d
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 86950e49d758aee9eda36df6e5635ce401388f63
+        commit: 7c04f6412472269594d2b1378bec5c56932c6345
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
@@ -117,8 +117,8 @@ modules:
       # Now fetch third-party stuff where the source is expected in `openchemistry/thirdparty`
       # VTK
       - type: archive
-        url: https://www.vtk.org/files/release/9.3/VTK-9.3.0.tar.gz
-        sha256: fdc7b9295225b34e4fdddc49cd06e66e94260cb00efee456e0f66568c9681be9
+        url: https://github.com/Kitware/VTK/archive/4f02ae83179c6a1542ac3c335c73dea976578c63.tar.gz
+        sha256: 2d2da63dc660016628fc41c3a201e24d49a7e67b0d5d6fbbe655fb23f5099929
         dest: thirdparty/VTK
       
       # Other third-party sources would normally be downloaded by Avogadro build on the fly
