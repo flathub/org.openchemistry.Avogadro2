@@ -53,7 +53,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openbabel/openbabel.git
-        commit: 32cf131444c1555c749b356dab44fb9fe275271f
+        commit: 4d71cf2b1e42da274ed9aab6cecd2061780d3057
 
   - name: avogadro2
     buildsystem: cmake-ninja
