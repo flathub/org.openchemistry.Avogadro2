@@ -53,7 +53,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openbabel/openbabel.git
-        commit: 4d71cf2b1e42da274ed9aab6cecd2061780d3057
+        commit: 32cf131444c1555c749b356dab44fb9fe275271f
 
   - name: avogadro2
     buildsystem: cmake-ninja
@@ -73,7 +73,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 9b2902c532745d9aa129683c5c55773c97135cf8
+        commit: 4d71cf2b1e42da274ed9aab6cecd2061780d3057
         disable-shallow-clone: true
         disable-submodules: true
 
