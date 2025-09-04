@@ -80,7 +80,7 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 1ee80703ba7f1489615f37392d227b8de9a2005c
+        commit: bd51cc2a50c82b54eb77e6bedf1948d4c4109b55
         dest: avogadroapp
       # avogadrolibs
       - type: git
