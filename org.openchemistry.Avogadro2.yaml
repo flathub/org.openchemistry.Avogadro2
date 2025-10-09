@@ -85,7 +85,7 @@ modules:
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 37e101cd908459a859964cb73fc9e13bffff27c6
+        commit: 8487945127819916acf2b1c957a089e1f487c43d
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
