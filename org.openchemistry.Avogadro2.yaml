@@ -80,20 +80,12 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-<<<<<<< HEAD
-        commit: 74312270a94a35e1784f17e31d49fa6b2686f937
-=======
         commit: 5ce96e830af373738ba76e1212f58c2c678f7500
->>>>>>> efd448b (Bump openchemistry (f95f4f2), avogadroapp (5ce96e8), avogadrolibs (c7aea17), avogadro-i18n (7d5c2ed), avogenerators (4726b3f))
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-<<<<<<< HEAD
-        commit: 8487945127819916acf2b1c957a089e1f487c43d
-=======
         commit: c7aea171ccc97d479a6b76f3ebbee3b05e6a7256
->>>>>>> efd448b (Bump openchemistry (f95f4f2), avogadroapp (5ce96e8), avogadrolibs (c7aea17), avogadro-i18n (7d5c2ed), avogenerators (4726b3f))
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
