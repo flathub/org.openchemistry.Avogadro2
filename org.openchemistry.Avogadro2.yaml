@@ -24,10 +24,8 @@ modules:
   - name: pixi
     buildsystem: simple
     build-commands:
-      - pwd
-      - ls -la
-      - tree
-      - install -Dm644 pixi /app/bin/pixi
+      - ls -la ./pixi
+      - install -Dm644 pixi/pixi /app/bin/pixi
     sources:
       - type: archive
         url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-x86_64-unknown-linux-musl.tar.gz
