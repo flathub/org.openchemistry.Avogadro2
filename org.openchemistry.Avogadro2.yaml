@@ -24,19 +24,20 @@ modules:
   - name: pixi
     buildsystem: simple
     build-commands:
-      - ls -la ./pixi
-      - install -Dm644 pixi/pixi /app/bin/pixi
+      - ls -la .
+      - tar -xf pixi.tar.gz -z
+      - install -Dm644 pixi /app/bin/pixi
     sources:
-      - type: archive
+      - type: file
         url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-x86_64-unknown-linux-musl.tar.gz
         sha256: 054293ee9ebd366ea51c5d5c7e63d39b7f33c0393cdf346045534b9739204234
-        dest: pixi
+        dest-filename: pixi.tar.gz
         only-arches:
           - x86_64
-      - type: archive
+      - type: file
         url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-aarch64-unknown-linux-musl.tar.gz
         sha256: 6460a1eddd310bc350ec85f17344600e5237aaaf083c091ec2e62318f5b20f97
-        dest: pixi
+        dest-filename: pixi.tar.gz
         only-arches:
           - aarch64
 
