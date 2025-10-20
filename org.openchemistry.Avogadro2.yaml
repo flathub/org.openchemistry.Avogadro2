@@ -24,6 +24,8 @@ modules:
   - name: pixi
     buildsystem: simple
     build-commands:
+      - pwd
+      - ls -la
       - install -Dm644 pixi /app/bin/pixi
     sources:
       - type: archive
