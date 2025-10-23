@@ -26,7 +26,7 @@ modules:
     build-commands:
       - ls -la .
       - tar -xf pixi.tar.gz -z
-      - install -Dm644 pixi /app/bin/pixi
+      - install -Dm755 pixi /app/bin/pixi
     sources:
       - type: file
         url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-x86_64-unknown-linux-musl.tar.gz
