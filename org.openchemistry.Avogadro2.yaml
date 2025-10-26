@@ -1,8 +1,7 @@
 app-id: org.openchemistry.Avogadro2
-default-branch: beta
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: "6.8"
+runtime-version: "6.9"
 command: avogadro2
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
@@ -19,6 +18,27 @@ cleanup:
 modules:
   # Needed to compile glew apparently
   - shared-modules/glu/glu-9.json
+
+  # Pixi, for running Python plugins for Avogadro and managing their dependencies
+  - name: pixi
+    buildsystem: simple
+    build-commands:
+      - ls -la .
+      - tar -xf pixi.tar.gz -z
+      - install -Dm755 pixi /app/bin/pixi
+    sources:
+      - type: file
+        url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-x86_64-unknown-linux-musl.tar.gz
+        sha256: 054293ee9ebd366ea51c5d5c7e63d39b7f33c0393cdf346045534b9739204234
+        dest-filename: pixi.tar.gz
+        only-arches:
+          - x86_64
+      - type: file
+        url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-aarch64-unknown-linux-musl.tar.gz
+        sha256: 6460a1eddd310bc350ec85f17344600e5237aaaf083c091ec2e62318f5b20f97
+        dest-filename: pixi.tar.gz
+        only-arches:
+          - aarch64
 
   # Open Babel is broken without patched rapidjson
   - name: rapidjson
@@ -62,7 +82,6 @@ modules:
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
       - -DCMAKE_BUILD_TYPE=Release
-      - -DUSE_VTK=ON
       - -DBUILD_GPL_PLUGINS=ON
       - -DBUILD_MOLEQUEUE=OFF
       - -DQT_VERSION=6
@@ -73,7 +92,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 46de07ebd407077bbe3a600639ef17ea40bd0171
+        commit: cfa9dee892550a9b45c2e5b8549d40abf21c5a08
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -81,23 +100,23 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 836bf58da0a031ea7d4afcc9e378b21b41eef0ea
+        commit: 13f80aaa88115b7ead103d52ad3f14f7f6f8951a
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: dbdaa4c1e20ac594c4b96733c7be92d575d0f9e5
+        commit: c466e4f310ac56264af73078c19e511604478a4c
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: f9c891faebd80ec8f20f0920023d36a9146bb902
+        commit: 9680f87e5f000caa5e9880639efa97333870580f
         dest: avogadro-i18n
-      # avogadrogenerators
+      # avogenerators
       - type: git
         url: https://github.com/OpenChemistry/avogenerators.git
-        commit: f4e3bd7f63664a6844e732e89598bfed48b2c47e
-        dest: avogadrogenerators
+        commit: 4726b3fe5d3bc242567a21aaa4e75df632bab683
+        dest: avogenerators
       # crystals
       - type: git
         url: https://github.com/OpenChemistry/crystals.git
@@ -115,11 +134,11 @@ modules:
         dest: molecules
 
       # Now fetch third-party stuff where the source is expected in `openchemistry/thirdparty`
-      # VTK
+      # JKQtPlotter
       - type: archive
-        url: https://github.com/Kitware/VTK/archive/9bd2ddd86ca49ca379e294cdceef8a16bbb64ea5.tar.gz
-        sha256: 3fe9693b7ac60fecd98209e16f64fa92addcd173e9e06bf24fc9c46f09390154
-        dest: thirdparty/VTK
+        url: https://github.com/jkriege2/JKQtPlotter/archive/5fd8951edc73a077096c84c5a4474c29f239ed66.tar.gz
+        sha256: 0deba5af19525f5411b12064c79469337651268b22d48e39fda469303b38539a
+        dest: thirdparty/jkqtplotter
       
       # Other third-party sources would normally be downloaded by Avogadro build on the fly
       # Flatpaks aren't allowed network access during build so have to download source archives
