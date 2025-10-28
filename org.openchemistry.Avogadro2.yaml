@@ -93,7 +93,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: cfa9dee892550a9b45c2e5b8549d40abf21c5a08
+        commit: 5fdc3164d91b494be86a8a93e2de3bc04f482096
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -101,17 +101,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 13f80aaa88115b7ead103d52ad3f14f7f6f8951a
+        commit: f24140fd3aa9919d3b55a8f1cc6511df03d27978
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: c466e4f310ac56264af73078c19e511604478a4c
+        commit: 978f97dfccfdfca69acc1fc3914a00f073070ea7
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: 9680f87e5f000caa5e9880639efa97333870580f
+        commit: b3c8e1cb8e6b47a5d0024cfc2d60d76e0d07b62e
         dest: avogadro-i18n
       # avogenerators
       - type: git
