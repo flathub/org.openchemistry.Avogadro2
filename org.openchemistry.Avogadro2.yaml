@@ -160,11 +160,6 @@ modules:
         url: https://github.com/spglib/spglib/archive/v2.5.0.tar.gz
         sha256: b6026f5e85106c0c9ee57e54b9399890d0f29982e20e96ede0428b3efbe6b914
         dest: Downloads
-      # libarchive
-      - type: file
-        url: https://github.com/libarchive/libarchive/archive/v3.7.7.tar.gz
-        sha256: fa62384995e8aa4f5a901c184fb5c91e56a29e24c05b6881a7f8fd5bbea694d2
-        dest: Downloads
       # libmsym
       - type: file
         url: https://github.com/mcodev31/libmsym/archive/85e47232376a8e735c2a7b5283f40b59b3953db1.tar.gz
