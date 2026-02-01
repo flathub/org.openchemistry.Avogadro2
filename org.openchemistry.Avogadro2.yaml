@@ -92,7 +92,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 804ccca0ca388a2871d934b7c49c59c8963a5073
+        commit: f70259098595b00b5cfedf21002816c25c069f87
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -100,17 +100,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 794939511687cd073a5c7e851c6d10d84ff3bcf6
+        commit: 12e396c7732e86484e144ffddd0e8c6a190729b6
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: c52ad70f9e3634b7a2f84c70b68bf8ad3871cef9
+        commit: 795cb882216b2b01e31e152c1a1c38d4dec4f49a
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: f91da38790db3e1e95f2e859bc69660b01bafac4
+        commit: 7759bda3ef65fd290fd0292ac3eb44ff39d46525
         dest: avogadro-i18n
       # avogenerators
       - type: git
@@ -135,9 +135,9 @@ modules:
 
       # Now fetch third-party stuff where the source is expected in `openchemistry/thirdparty`
       # JKQtPlotter
-      - type: archive
-        url: https://github.com/jkriege2/JKQtPlotter/archive/5fd8951edc73a077096c84c5a4474c29f239ed66.tar.gz
-        sha256: 0deba5af19525f5411b12064c79469337651268b22d48e39fda469303b38539a
+      - type: git
+        url: https://github.com/jkriege2/JKQtPlotter.git
+        commit: d243218119b1632987df26baea0d4bc6ccdee533
         dest: thirdparty/jkqtplotter
       
       # Other third-party sources would normally be downloaded by Avogadro build on the fly
