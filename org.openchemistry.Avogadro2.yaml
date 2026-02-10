@@ -71,6 +71,7 @@ modules:
       - -DWITH_JSON=ON
       - -DWITH_COORDGEN=OFF
       - -DWITH_MAEPARSER=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.10
     sources:
       - type: git
         url: https://github.com/openbabel/openbabel.git
