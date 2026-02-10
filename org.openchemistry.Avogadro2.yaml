@@ -48,6 +48,7 @@ modules:
       - -DRAPIDJSON_BUILD_DOC=OFF
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.10
     sources:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
