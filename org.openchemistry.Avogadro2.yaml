@@ -48,6 +48,7 @@ modules:
       - -DRAPIDJSON_BUILD_DOC=OFF
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.10
     sources:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
@@ -70,6 +71,7 @@ modules:
       - -DWITH_JSON=ON
       - -DWITH_COORDGEN=OFF
       - -DWITH_MAEPARSER=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.10
     sources:
       - type: git
         url: https://github.com/openbabel/openbabel.git
@@ -92,7 +94,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 5fdc3164d91b494be86a8a93e2de3bc04f482096
+        commit: b2a02833c157eb9b572d25b7a63096c600935743
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -100,17 +102,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: f24140fd3aa9919d3b55a8f1cc6511df03d27978
+        commit: 9e4050824a740ac5f7e559d06cc5e7ee594822c8
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 978f97dfccfdfca69acc1fc3914a00f073070ea7
+        commit: 5d5d11f4a9ca716f7fb9653eb92424f1714b68ac
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: b3c8e1cb8e6b47a5d0024cfc2d60d76e0d07b62e
+        commit: 4577258b3844c3596648a4472904512318bf24dc
         dest: avogadro-i18n
       # avogenerators
       - type: git
@@ -125,7 +127,7 @@ modules:
       # fragments
       - type: git
         url: https://github.com/OpenChemistry/fragments.git
-        commit: fe0089bb1eb2382719c772533cb76fe3e5981e6b
+        commit: 4a7e318952de7cf67b498874c3baac3c14ae27ad
         dest: fragments
       # molecules
       - type: git
@@ -135,9 +137,9 @@ modules:
 
       # Now fetch third-party stuff where the source is expected in `openchemistry/thirdparty`
       # JKQtPlotter
-      - type: archive
-        url: https://github.com/jkriege2/JKQtPlotter/archive/5fd8951edc73a077096c84c5a4474c29f239ed66.tar.gz
-        sha256: 0deba5af19525f5411b12064c79469337651268b22d48e39fda469303b38539a
+      - type: git
+        url: https://github.com/jkriege2/JKQtPlotter.git
+        commit: d243218119b1632987df26baea0d4bc6ccdee533
         dest: thirdparty/jkqtplotter
       
       # Other third-party sources would normally be downloaded by Avogadro build on the fly
