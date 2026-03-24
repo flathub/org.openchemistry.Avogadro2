@@ -94,7 +94,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: b2a02833c157eb9b572d25b7a63096c600935743
+        commit: 52ad62b0a7587dd54249f8c0277b87f6b824d94c
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -102,23 +102,18 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 9e4050824a740ac5f7e559d06cc5e7ee594822c8
+        commit: 9b13bf3e7035c455b2aad1491e712106e2596402
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 5d5d11f4a9ca716f7fb9653eb92424f1714b68ac
+        commit: 9423c5db2bc8fe89c1bfbd386c964889a87e08dc
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: 4577258b3844c3596648a4472904512318bf24dc
+        commit: a45df32654dd78b1a99eae8b6d89b61e24920c02
         dest: avogadro-i18n
-      # avogenerators
-      - type: git
-        url: https://github.com/OpenChemistry/avogenerators.git
-        commit: 4726b3fe5d3bc242567a21aaa4e75df632bab683
-        dest: avogenerators
       # crystals
       - type: git
         url: https://github.com/OpenChemistry/crystals.git
