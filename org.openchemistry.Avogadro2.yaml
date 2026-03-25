@@ -89,6 +89,7 @@ modules:
       - -DQT_VERSION=6
       - -DDOWNLOAD_TO_SOURCE_DIR=ON
       - -DUSE_SYSTEM_OPENBABEL=ON
+      - -DUSE_SYSTEM_LIBARCHIVE=ON
     sources:
       # First get the umbrella repo so we can use superbuild strategy
       # Clone but not recursively, only want CMake files and dir structure
@@ -161,11 +162,6 @@ modules:
       - type: file
         url: https://github.com/spglib/spglib/archive/v2.5.0.tar.gz
         sha256: b6026f5e85106c0c9ee57e54b9399890d0f29982e20e96ede0428b3efbe6b914
-        dest: Downloads
-      # libarchive
-      - type: file
-        url: https://github.com/libarchive/libarchive/archive/v3.7.7.tar.gz
-        sha256: fa62384995e8aa4f5a901c184fb5c91e56a29e24c05b6881a7f8fd5bbea694d2
         dest: Downloads
       # libmsym
       - type: file
