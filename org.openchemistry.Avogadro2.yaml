@@ -94,7 +94,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: b2a02833c157eb9b572d25b7a63096c600935743
+        commit: 52ad62b0a7587dd54249f8c0277b87f6b824d94c
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -102,23 +102,18 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 9e4050824a740ac5f7e559d06cc5e7ee594822c8
+        commit: 9b13bf3e7035c455b2aad1491e712106e2596402
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 5d5d11f4a9ca716f7fb9653eb92424f1714b68ac
+        commit: 9423c5db2bc8fe89c1bfbd386c964889a87e08dc
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: 4577258b3844c3596648a4472904512318bf24dc
+        commit: a45df32654dd78b1a99eae8b6d89b61e24920c02
         dest: avogadro-i18n
-      # avogenerators
-      - type: git
-        url: https://github.com/OpenChemistry/avogenerators.git
-        commit: 4726b3fe5d3bc242567a21aaa4e75df632bab683
-        dest: avogenerators
       # crystals
       - type: git
         url: https://github.com/OpenChemistry/crystals.git
@@ -159,13 +154,13 @@ modules:
         dest: Downloads
       # spglib
       - type: file
-        url: https://github.com/spglib/spglib/archive/v2.5.0.tar.gz
-        sha256: b6026f5e85106c0c9ee57e54b9399890d0f29982e20e96ede0428b3efbe6b914
+        url: https://github.com/spglib/spglib/archive/v2.7.0.tar.gz
+        sha256: b22fc9abae9716c574fbc6d55cfc53ed654a714fccc5657a26ff5d18114bd8bd
         dest: Downloads
       # libarchive
       - type: file
-        url: https://github.com/libarchive/libarchive/archive/v3.7.7.tar.gz
-        sha256: fa62384995e8aa4f5a901c184fb5c91e56a29e24c05b6881a7f8fd5bbea694d2
+        url: https://github.com/libarchive/libarchive/archive/v3.8.5.tar.gz
+        sha256: 3877c692621d8fbe9512592cf824c98c4b393525ab96735616ff628086158777
         dest: Downloads
       # libmsym
       - type: file
