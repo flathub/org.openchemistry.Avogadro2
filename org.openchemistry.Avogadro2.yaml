@@ -102,17 +102,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 9b13bf3e7035c455b2aad1491e712106e2596402
+        commit: 251ac788374985188f97c771c7f79882a24c32ad
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 9423c5db2bc8fe89c1bfbd386c964889a87e08dc
+        commit: d41dbf36dd92fcf275f25bb5f3ad4063a838ed3a
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: a45df32654dd78b1a99eae8b6d89b61e24920c02
+        commit: 46c52caa5e789d4a0a38cc07b5bdacbc8643c065
         dest: avogadro-i18n
       # crystals
       - type: git
@@ -122,7 +122,7 @@ modules:
       # fragments
       - type: git
         url: https://github.com/OpenChemistry/fragments.git
-        commit: 4a7e318952de7cf67b498874c3baac3c14ae27ad
+        commit: 2e29d17b5e998495ea89f1ab9329a28d96e3b0e5
         dest: fragments
       # molecules
       - type: git
