@@ -102,17 +102,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 251ac788374985188f97c771c7f79882a24c32ad
+        commit: 9ffe7b022a3342d5c006c0172814b63e1eb2f327
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: d41dbf36dd92fcf275f25bb5f3ad4063a838ed3a
+        commit: c4a5279e5afa493f521309b594591b399e97c4e7
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: 46c52caa5e789d4a0a38cc07b5bdacbc8643c065
+        commit: 9ac6f5c0a71eed9b7324cb6b83c930939cbdcf0f
         dest: avogadro-i18n
       # crystals
       - type: git
