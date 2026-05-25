@@ -6,14 +6,14 @@ command: avogadro2
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
   - --socket=wayland
-  - --socket=fallback-x11  # To support X11
-  - --share=ipc  # Bad performance on X11 without
-  - --device=dri  # OpenGL rendering
-  - --share=network  # For plugin downloads
+  - --socket=fallback-x11 # To support X11
+  - --share=ipc # Bad performance on X11 without
+  - --device=dri # OpenGL rendering
+  - --share=network # For plugin downloads
 cleanup:
   - /lib/cmake
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 
 modules:
   # Needed to compile glew apparently
@@ -79,8 +79,8 @@ modules:
 
   - name: avogadro2
     buildsystem: cmake-ninja
-    builddir: true  # Build outside of source tree, just like other builds
-    no-make-install: true  # Superbuild doesn't have `install` command defined
+    builddir: true # Build outside of source tree, just like other builds
+    no-make-install: true # Superbuild doesn't have `install` command defined
     config-opts:
       # Match GitHub builds as much as possible, which generally means using defaults
       - -DCMAKE_BUILD_TYPE=Release
@@ -107,7 +107,7 @@ modules:
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: c4a5279e5afa493f521309b594591b399e97c4e7
+        commit: ee8ca07410ccf1fb6f637eaa2714b95634db540a
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
@@ -136,7 +136,7 @@ modules:
         url: https://github.com/jkriege2/JKQtPlotter.git
         commit: d243218119b1632987df26baea0d4bc6ccdee533
         dest: thirdparty/jkqtplotter
-      
+
       # Other third-party sources would normally be downloaded by Avogadro build on the fly
       # Flatpaks aren't allowed network access during build so have to download source archives
       # ahead of time to download_dir (which we've indicated using `-DDOWNLOAD_TO_SOURCE_DIR=ON`)
@@ -173,6 +173,6 @@ modules:
       # -a option is recursive, should preserve permissions and symlinks
       - cp -a prefix/bin -t ${FLATPAK_DEST}/
       - cp -a prefix/lib -t ${FLATPAK_DEST}/
-      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/  # Merge with lib
-      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64  # Add a symlink so plugins get found
+      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/ # Merge with lib
+      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64 # Add a symlink so plugins get found
       - cp -a prefix/share -t ${FLATPAK_DEST}/
