@@ -75,7 +75,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openbabel/openbabel.git
-        commit: 32cf131444c1555c749b356dab44fb9fe275271f
+        commit: 5046ed24e1c33180537715e0204f3111125eb595
 
   - name: avogadro2
     buildsystem: cmake-ninja
@@ -94,7 +94,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 52ad62b0a7587dd54249f8c0277b87f6b824d94c
+        commit: 486851dbf51d18fe13961e69002f0782e18d2e54
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -102,17 +102,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: 9ffe7b022a3342d5c006c0172814b63e1eb2f327
+        commit: 0bff7191b82626eb32cc07515a62598c646fee93
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: ee8ca07410ccf1fb6f637eaa2714b95634db540a
+        commit: 6f8a46b75c2fd3703fb7546a6155cb43c469cca1
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: 9ac6f5c0a71eed9b7324cb6b83c930939cbdcf0f
+        commit: 9de016ed42dab96ed6ecbae29882edb2714f1ab8
         dest: avogadro-i18n
       # crystals
       - type: git
@@ -159,8 +159,8 @@ modules:
         dest: Downloads
       # libarchive
       - type: file
-        url: https://github.com/libarchive/libarchive/archive/v3.8.5.tar.gz
-        sha256: 3877c692621d8fbe9512592cf824c98c4b393525ab96735616ff628086158777
+        url: https://github.com/libarchive/libarchive/archive/v3.8.7.tar.gz
+        sha256: bc942030fe7cb30e04eed31bd5f63c38cdfd712315b303e91b64e58f05db2346
         dest: Downloads
       # libmsym
       - type: file
