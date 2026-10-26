@@ -6,14 +6,14 @@ command: avogadro2
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
   - --socket=wayland
-  - --socket=fallback-x11 # To support X11
-  - --share=ipc # Bad performance on X11 without
-  - --device=dri # OpenGL rendering
-  - --share=network # For plugin downloads
+  - --socket=fallback-x11  # To support X11
+  - --share=ipc  # Bad performance on X11 without
+  - --device=dri  # OpenGL rendering
+  - --share=network  # For plugin downloads
 cleanup:
   - /lib/cmake
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   # Needed to compile glew apparently
@@ -28,14 +28,14 @@ modules:
       - install -Dm755 pixi /app/bin/pixi
     sources:
       - type: file
-        url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-x86_64-unknown-linux-musl.tar.gz
-        sha256: 054293ee9ebd366ea51c5d5c7e63d39b7f33c0393cdf346045534b9739204234
+        url: https://github.com/prefix-dev/pixi/releases/download/v0.82.1/pixi-x86_64-unknown-linux-musl.tar.gz
+        sha256: 7ac72af79c50653bfcfddb2473b6e9eff2654affe0057d19fe21b0d8556a7fe2
         dest-filename: pixi.tar.gz
         only-arches:
           - x86_64
       - type: file
-        url: https://github.com/prefix-dev/pixi/releases/download/v0.56.0/pixi-aarch64-unknown-linux-musl.tar.gz
-        sha256: 6460a1eddd310bc350ec85f17344600e5237aaaf083c091ec2e62318f5b20f97
+        url: https://github.com/prefix-dev/pixi/releases/download/v0.82.1/pixi-aarch64-unknown-linux-musl.tar.gz
+        sha256: 6f4c4a101b84b15f33440f39fe5889afb1b77a4e88f02962248240cdcab56966
         dest-filename: pixi.tar.gz
         only-arches:
           - aarch64
@@ -75,7 +75,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openbabel/openbabel.git
-        commit: 0e94434fa75c9f61095023e3c12e0d5f2ac035ff
+        commit: 1afe81019b781c857eecb86251e106e2f31da928
 
   - name: avogadro2
     buildsystem: cmake-ninja
@@ -94,7 +94,7 @@ modules:
       # Clone but not recursively, only want CMake files and dir structure
       - type: git
         url: https://github.com/OpenChemistry/openchemistry.git
-        commit: 58e2716fc1e40b8ab8dbb9d89e619e1434ba47b9
+        commit: 3fbb39ba04513033a10ef61262b86f3b5b0b9857
         disable-shallow-clone: true
         disable-submodules: true
 
@@ -102,17 +102,17 @@ modules:
       # avogadroapp
       - type: git
         url: https://github.com/OpenChemistry/avogadroapp.git
-        commit: b1e3fece5d882d9850ddfc89ceb95c74b9375e5b
+        commit: 8816ad526cb7af3eecd733345f9cbd86d9d07138
         dest: avogadroapp
       # avogadrolibs
       - type: git
         url: https://github.com/OpenChemistry/avogadrolibs.git
-        commit: 20ccd76f84af41b5b30350a98d4b3ee5c160857f
+        commit: 19a2737677ed77150987b0b4a708d56a54712257
         dest: avogadrolibs
       # avogadro-i18n
       - type: git
         url: https://github.com/OpenChemistry/avogadro-i18n.git
-        commit: 4950610942b44ba24c8ad8933fb3a975fb4ebad1
+        commit: 2f76a5271c060b266d5c5d75b80e5471a32fe6eb
         dest: avogadro-i18n
       # crystals
       - type: git
@@ -122,7 +122,7 @@ modules:
       # fragments
       - type: git
         url: https://github.com/OpenChemistry/fragments.git
-        commit: 2e29d17b5e998495ea89f1ab9329a28d96e3b0e5
+        commit: 0e99287bb735ba0f0dfc6bf540ff1c342f27de38
         dest: fragments
       # molecules
       - type: git
@@ -147,10 +147,10 @@ modules:
         url: https://github.com/nigels-com/glew/releases/download/glew-2.3.1/glew-2.3.1.tgz
         sha256: b64790f94b926acd7e8f84c5d6000a86cb43967bd1e688b03089079799c9e889
         dest: Downloads
-      # Eigen3
+      # eigen
       - type: file
-        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.1/eigen-3.4.1.tar.gz
-        sha256: b93c667d1b69265cdb4d9f30ec21f8facbbe8b307cf34c0b9942834c6d4fdbe2
+        url: https://gitlab.com/libeigen/eigen/-/archive/5.0.1/eigen-5.0.1.tar.gz
+        sha256: e9c326dc8c05cd1e044c71f30f1b2e34a6161a3b6ecf445d56b53ff1669e3dec
         dest: Downloads
       # spglib
       - type: file
@@ -173,6 +173,6 @@ modules:
       # -a option is recursive, should preserve permissions and symlinks
       - cp -a prefix/bin -t ${FLATPAK_DEST}/
       - cp -a prefix/lib -t ${FLATPAK_DEST}/
-      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/ # Merge with lib
-      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64 # Add a symlink so plugins get found
+      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/  # Merge with lib
+      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64  # Add a symlink so plugins get found
       - cp -a prefix/share -t ${FLATPAK_DEST}/
