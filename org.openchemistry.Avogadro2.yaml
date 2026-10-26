@@ -6,14 +6,14 @@ command: avogadro2
 appdata-license: BSD-3-Clause AND GPL-2.0-only
 finish-args:
   - --socket=wayland
-  - --socket=fallback-x11 # To support X11
-  - --share=ipc # Bad performance on X11 without
-  - --device=dri # OpenGL rendering
-  - --share=network # For plugin downloads
+  - --socket=fallback-x11  # To support X11
+  - --share=ipc  # Bad performance on X11 without
+  - --device=dri  # OpenGL rendering
+  - --share=network  # For plugin downloads
 cleanup:
   - /lib/cmake
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   # Needed to compile glew apparently
@@ -173,6 +173,6 @@ modules:
       # -a option is recursive, should preserve permissions and symlinks
       - cp -a prefix/bin -t ${FLATPAK_DEST}/
       - cp -a prefix/lib -t ${FLATPAK_DEST}/
-      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/ # Merge with lib
-      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64 # Add a symlink so plugins get found
+      - cp -a prefix/lib64/* -t ${FLATPAK_DEST}/lib/  # Merge with lib
+      - ln -rs ${FLATPAK_DEST}/lib ${FLATPAK_DEST}/lib64  # Add a symlink so plugins get found
       - cp -a prefix/share -t ${FLATPAK_DEST}/
